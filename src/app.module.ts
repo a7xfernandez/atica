@@ -35,6 +35,5 @@ import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
   ],
   exports: [],
   controllers: [],
-  providers: [],
 })
 export class AppModule {}
