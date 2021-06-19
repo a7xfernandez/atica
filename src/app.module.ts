@@ -8,29 +8,32 @@ import { AccountTypeModule } from './account-type/account-type.module';
 import { AccountCredentialModule } from './account-credential/account-credential.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountInfoKeysModule } from './account-info-keys/account-info-keys.module';
+import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
 
 @Module({
   imports: [
-      TypeOrmModule.forRoot({
-        type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: 'pgsqlapp',
-        password: 'pgsqlapp1',
-        database: 'backendTrackingApp',
-        entities: [],
-        synchronize: true,
-        autoLoadEntities: true,
-      }),
-    ClientsModule, 
-    AgentsModule, 
-    PackagesModule, 
-    UsersModule, 
-    AccountModule, 
+    ConfigDefaultModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.HOST,
+      port: Number(process.env.PORT),
+      username: process.env.USER,
+      password: process.env.PASSWORD,
+      database: process.env.DB,
+      entities: [],
+      synchronize: true,
+      autoLoadEntities: true,
+    }),
+    ClientsModule,
+    AgentsModule,
+    PackagesModule,
+    UsersModule,
+    AccountModule,
     AccountTypeModule,
     AccountCredentialModule,
-    AccountInfoKeysModule
+    AccountInfoKeysModule,
   ],
+  exports: [],
   controllers: [],
   providers: [],
 })

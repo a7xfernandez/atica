@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AccountInfoKeysEntity } from './models/account-info-keys.entity';
+import { AccountProfileKeysEntity } from './models/account-profile-keys.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AccountInfoKeysEntity])],
+  imports: [TypeOrmModule.forFeature([AccountProfileKeysEntity])],
   exports: [TypeOrmModule],
 })
 export class AccountInfoKeysModule {}

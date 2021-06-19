@@ -1,5 +1,5 @@
 export const OPENAPI = {
-  title: "Users.Api.Services",
-  description: "Services to users",
+  title: "Api.Backend.Services",
+  description: "Catalog services" ,
   version: "1.0.0"
 };
