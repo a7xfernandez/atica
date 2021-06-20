@@ -38,7 +38,9 @@ export class UsersController {
       user.userName = createUserReqDto.userName;
       user.email = createUserReqDto.email;
      
-      let result = this.usersService.create(user);
+      let result = await this.usersService.create(user);
+
+      console.log(result);
 
       return res.status(HttpStatus.OK).json(userDto);
     } catch (error) {

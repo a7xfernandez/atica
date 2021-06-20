@@ -9,7 +9,7 @@ export class UsersService {
   ) {}
 
   async create(user: AccountEntity ){
-      return this.accountService.create(user);
+      return this.accountService.save(user);
   }
 
 
