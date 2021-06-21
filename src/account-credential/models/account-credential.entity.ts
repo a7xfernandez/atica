@@ -16,5 +16,5 @@ export class AccountCredentialEntity {
   account: AccountEntity;
 
   @Column({ default: true })
-  isActive: string;
+  isActive: boolean;
 }

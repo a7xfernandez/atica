@@ -5,7 +5,7 @@ import { AccountCredentialService } from './services/account-credential.service'
 
 @Module({
   imports: [TypeOrmModule.forFeature([AccountCredentialEntity])],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, AccountCredentialService],
   providers: [AccountCredentialService],
 })
 export class AccountCredentialModule {}

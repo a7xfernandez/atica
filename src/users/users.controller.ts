@@ -1,6 +1,7 @@
 import { Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ApplicationConfigs } from 'config/application.properties.settings';
+import { AccountCredentialEntity } from 'src/account-credential/models/account-credential.entity';
 import { AccountEntity } from 'src/account/models/account.entity';
 import { UserCreateReqDto } from './dto/user.create.request.dto';
 import { UserResDto } from './dto/user.response.dto';
@@ -30,17 +31,23 @@ export class UsersController {
   ): Promise<UserResDto> {
     try {
       let userDto: UserResDto = new UserResDto();
-
-      let user = new AccountEntity()
+      let user = new AccountEntity();
+      let credential = new AccountCredentialEntity();
 
       user.firstName= createUserReqDto.firstName;
       user.lastName = createUserReqDto.lastName;
       user.userName = createUserReqDto.userName;
       user.email = createUserReqDto.email;
      
-      let result = await this.usersService.create(user);
+      let result1 = await this.usersService.create(user);
 
-      console.log(result);
+      credential.account = result1;
+      credential.credential = createUserReqDto.password;
+      credential.isActive = true;
+
+      let result2 = await this.usersService.setCredential(credential);
+
+     console.log(result2);
 
       return res.status(HttpStatus.OK).json(userDto);
     } catch (error) {
