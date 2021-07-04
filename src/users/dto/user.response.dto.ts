@@ -1,9 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 
 export class UserResDto {
-  
   @ApiProperty()
-  id: string;
+  id: number;
 
   @ApiProperty()
   firstName: string;
@@ -16,5 +15,4 @@ export class UserResDto {
 
   @ApiProperty()
   email: string;
-
 }

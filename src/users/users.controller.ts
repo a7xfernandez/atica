@@ -30,24 +30,8 @@ export class UsersController {
     @Body() createUserReqDto: UserCreateReqDto,
   ): Promise<UserResDto> {
     try {
-      let userDto: UserResDto = new UserResDto();
-      let user = new AccountEntity();
-      let credential = new AccountCredentialEntity();
-
-      user.firstName= createUserReqDto.firstName;
-      user.lastName = createUserReqDto.lastName;
-      user.userName = createUserReqDto.userName;
-      user.email = createUserReqDto.email;
-     
-      let result1 = await this.usersService.create(user);
-
-      credential.account = result1;
-      credential.credential = createUserReqDto.password;
-      credential.isActive = true;
-
-      let result2 = await this.usersService.setCredential(credential);
-
-     console.log(result2);
+      
+      let userDto = await this.usersService.create(createUserReqDto);
 
       return res.status(HttpStatus.OK).json(userDto);
     } catch (error) {

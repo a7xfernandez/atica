@@ -1,32 +1,60 @@
+import { AccountTypeService } from './../../account-type/services/account-type.service';
+import { CommonService } from './../../common/services/common.service';
+import { UserCreateReqDto } from './../dto/user.create.request.dto';
 import { AccountCredentialService } from './../../account-credential/services/account-credential.service';
 import { AccountCredentialEntity } from './../../account-credential/models/account-credential.entity';
 import { AccountEntity } from './../../account/models/account.entity';
 import { Injectable } from '@nestjs/common';
 import { AccountService } from 'src/account/services/account.service';
-import * as bcrypt from 'bcrypt';
+
+import { UserResDto } from '../dto/user.response.dto';
 
 @Injectable()
 export class UsersService {
-  private readonly saltRounds = 10;
-
   constructor(
     private accountService: AccountService,
     private credentialService: AccountCredentialService,
+    private accountTypeService:AccountTypeService,
+    private commonService: CommonService,
   ) {}
 
-  private async hashPassword(password: string): Promise<string> {
-    const salt = await bcrypt.genSalt(this.saltRounds);
-    return await bcrypt.hash(password, salt);
+  async create(userDto: UserCreateReqDto) {
+    let userNew = new AccountEntity();
+    let credential = new AccountCredentialEntity();
+    let userResDto: UserResDto = new UserResDto();
+
+    userNew.firstName = userDto.firstName;
+    userNew.lastName = userDto.lastName;
+    userNew.userName = userDto.userName;
+    userNew.email = userDto.email;
+
+    userNew.accountType =  await this.accountTypeService.findOneType("User");
+
+    let userEntity = await this.accountService.save(userNew);
+
+    credential.account = userEntity;
+    credential.credential = userDto.password;
+    credential.isActive = true;
+
+    await this.createCredential(credential);
+
+    userResDto.id = userEntity.id;
+    userResDto.email = userEntity.email;
+    userResDto.firstName = userEntity.firstName;
+    userResDto.lastName = userEntity.lastName;
+    userResDto.userName = userEntity.userName;
+
+    return userResDto;
   }
 
-  async create(user: AccountEntity) {
-    return this.accountService.save(user);
-  }
-
-  async setCredential(credential: AccountCredentialEntity) {
-    credential.credential = await this.hashPassword(credential.credential);
+  async createCredential(credential: AccountCredentialEntity) {
+    credential.credential = await this.commonService.hashPassword(
+      credential.credential,
+    );
     await this.credentialService.save(credential);
-    console.log(credential);
-    return;
+    return credential;
   }
+
+
+
 }

@@ -9,6 +9,7 @@ import { AccountCredentialModule } from './account-credential/account-credential
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountInfoKeysModule } from './account-info-keys/account-info-keys.module';
 import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
     AccountTypeModule,
     AccountCredentialModule,
     AccountInfoKeysModule,
+    CommonModule,
   ],
   exports: [],
   controllers: [],

@@ -5,7 +5,6 @@ import { AccountTypeEntity } from '../models/account-type.entity';
 
 @Injectable()
 export class AccountTypeService {
-
   constructor(
     @InjectRepository(AccountTypeEntity)
     private typesRepository: Repository<AccountTypeEntity>,
@@ -17,6 +16,10 @@ export class AccountTypeService {
 
   findOne(id: string): Promise<AccountTypeEntity> {
     return this.typesRepository.findOne(id);
+  }
+
+  async findOneType(typeUser: string): Promise<AccountTypeEntity> {
+    return this.typesRepository.findOne({ where: { userType: typeUser } });
   }
 
   async save(user: AccountTypeEntity): Promise<AccountTypeEntity> {

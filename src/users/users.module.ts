@@ -1,3 +1,5 @@
+import { AccountTypeModule } from './../account-type/account-type.module';
+import { CommonModule } from './../common/common.module';
 import { AccountCredentialModule } from './../account-credential/account-credential.module';
 import { Module } from '@nestjs/common';
 import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
@@ -12,6 +14,8 @@ import { AccountInfoKeysModule } from 'src/account-info-keys/account-info-keys.m
     AccountModule,
     AccountCredentialModule,
     AccountInfoKeysModule,
+    AccountTypeModule,
+    CommonModule
   ],
   providers: [UsersService],
   controllers: [UsersController],

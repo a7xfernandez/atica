@@ -8,7 +8,7 @@ export class AccountCredentialEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 45 })
+  @Column()
   credential: string;
 
   @Index()
