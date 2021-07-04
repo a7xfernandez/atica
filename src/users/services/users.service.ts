@@ -14,11 +14,11 @@ export class UsersService {
   constructor(
     private accountService: AccountService,
     private credentialService: AccountCredentialService,
-    private accountTypeService:AccountTypeService,
+    private accountTypeService: AccountTypeService,
     private commonService: CommonService,
   ) {}
 
-  async create(userDto: UserCreateReqDto) {
+  async create(userDto: UserCreateReqDto): Promise<UserResDto> {
     let userNew = new AccountEntity();
     let credential = new AccountCredentialEntity();
     let userResDto: UserResDto = new UserResDto();
@@ -28,7 +28,7 @@ export class UsersService {
     userNew.userName = userDto.userName;
     userNew.email = userDto.email;
 
-    userNew.accountType =  await this.accountTypeService.findOneType("User");
+    userNew.accountType = await this.accountTypeService.findOneType('User');
 
     let userEntity = await this.accountService.save(userNew);
 
@@ -36,7 +36,7 @@ export class UsersService {
     credential.credential = userDto.password;
     credential.isActive = true;
 
-    await this.createCredential(credential);
+    await this.credentialService.save(credential);
 
     userResDto.id = userEntity.id;
     userResDto.email = userEntity.email;
@@ -46,15 +46,4 @@ export class UsersService {
 
     return userResDto;
   }
-
-  async createCredential(credential: AccountCredentialEntity) {
-    credential.credential = await this.commonService.hashPassword(
-      credential.credential,
-    );
-    await this.credentialService.save(credential);
-    return credential;
-  }
-
-
-
 }
