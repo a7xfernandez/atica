@@ -1,13 +1,14 @@
 import { AccountTypeService } from './../../account-type/services/account-type.service';
 import { CommonService } from './../../common/services/common.service';
-import { UserCreateReqDto } from './../dto/user.create.request.dto';
+import { UserCreateDto } from './../dto/user.create.request.dto';
 import { AccountCredentialService } from './../../account-credential/services/account-credential.service';
 import { AccountCredentialEntity } from './../../account-credential/models/account-credential.entity';
 import { AccountEntity } from './../../account/models/account.entity';
 import { Injectable } from '@nestjs/common';
 import { AccountService } from 'src/account/services/account.service';
 
-import { UserResDto } from '../dto/user.response.dto';
+import { UserDto } from '../dto/user.response.dto';
+import { UserIdDto } from '../dto/user.id.dto';
 
 @Injectable()
 export class UsersService {
@@ -18,10 +19,23 @@ export class UsersService {
     private commonService: CommonService,
   ) {}
 
-  async create(userDto: UserCreateReqDto): Promise<UserResDto> {
+  async find(userId:string): Promise<UserDto> {
+    let userResDto: UserDto = new UserDto();
+    let userEntity = await this.accountService.findOne(userId);
+
+    userResDto.id = userEntity.id;
+    userResDto.email = userEntity.email;
+    userResDto.firstName = userEntity.firstName;
+    userResDto.lastName = userEntity.lastName;
+    userResDto.userName = userEntity.userName;
+
+    return userResDto;
+  }
+
+  async create(userDto: UserCreateDto): Promise<UserDto> {
     let userNew = new AccountEntity();
     let credential = new AccountCredentialEntity();
-    let userResDto: UserResDto = new UserResDto();
+    let userResDto: UserDto = new UserDto();
 
     userNew.firstName = userDto.firstName;
     userNew.lastName = userDto.lastName;

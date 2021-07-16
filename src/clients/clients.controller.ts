@@ -3,7 +3,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { ApplicationConfigs } from 'config/application.properties.settings';
 
 @ApiTags('Clients')
-@Controller(`${ApplicationConfigs.router}/clients`)
+@Controller(`clients`)
 export class ClientsController {
   @Get()
   findAll(): string {
