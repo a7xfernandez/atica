@@ -1,0 +1,37 @@
+version: '3.3'
+
+services:
+    api_rest:
+        build:   
+            context: ./
+        image: api-bk-users
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        command: npm run start:dev
+        environment: 
+           - PG_URI=postgres://pgsqlapp:pgsqlapp1@postgresql/backendTrackingApp
+        depends_on:
+            - postgresql
+    nginx:
+        build:
+            context: ./nginx
+        volumes:
+            - ./:/home/node/app
+        restart: always
+        ports:
+            - 80:80
+        depends_on:
+            - api_rest
+    postgresql:
+        image: 'bitnami/postgresql:latest'
+        ports:
+            - '5432'
+        volumes:
+            - 'postgresql_data:/bitnami/postgresql'
+        environment:
+            - POSTGRESQL_USERNAME=pgsqlapp
+            - POSTGRESQL_PASSWORD=pgsqlapp1
+            - POSTGRESQL_DATABASE=backendTrackingApp
+volumes:
+    postgresql_data:
