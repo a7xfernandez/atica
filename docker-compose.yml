@@ -16,6 +16,16 @@ services:
             - ENV= development
         depends_on:
             - postgresql
+    api_doc:
+        build:   
+            context: ./
+        image: api-bk-users
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        command: npx @compodoc/compodoc -p tsconfig.json -s
+        ports:
+            - 8080:8080
     nginx:
         build:
             context: ./nginx
@@ -29,7 +39,7 @@ services:
     postgresql:
         image: 'bitnami/postgresql:latest'
         ports:
-            - '5432'
+            - 5432:5432
         volumes:
             - 'postgresql_data:/bitnami/postgresql'
         environment:
