@@ -19,7 +19,7 @@ export class UsersService {
     private commonService: CommonService,
   ) {}
 
-  async find(userId:string): Promise<UserDto> {
+  async find(userId: string): Promise<UserDto> {
     let userResDto: UserDto = new UserDto();
     let userEntity = await this.accountService.findOne(userId);
 
@@ -30,6 +30,26 @@ export class UsersService {
     userResDto.userName = userEntity.userName;
 
     return userResDto;
+  }
+
+  async findAll(offset: number, take: number): Promise<UserDto[]> {
+    let typeEntity = await this.accountTypeService.findOneType('User');
+    let usersEntity = await this.accountService.findAll(
+      offset,
+      take,
+      typeEntity);
+
+    let usersResDto = await usersEntity.map( (userEntity: AccountEntity)=>{
+      let userResDto: UserDto = new UserDto();
+       userResDto.id = userEntity.id;
+       userResDto.email = userEntity.email;
+       userResDto.firstName = userEntity.firstName;
+       userResDto.lastName = userEntity.lastName;
+       userResDto.userName = userEntity.userName;
+      return userResDto;
+    });
+
+    return usersResDto;
   }
 
   async create(userDto: UserCreateDto): Promise<UserDto> {

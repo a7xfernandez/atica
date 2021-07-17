@@ -13,7 +13,7 @@ import { UsersService } from './services/users.service';
 export class UsersController {
   constructor(private usersService: UsersService) {}
 
-  @ApiParam({ name:"id" })
+  @ApiParam({ name: 'id' })
   @ApiResponse({
     status: HttpStatus.OK,
     type: UserDto,
@@ -24,11 +24,39 @@ export class UsersController {
     description: 'El registro no pudo ser creado',
   })
   @Get('/find/:id')
-  async getUser(@Res() res, @Param() params): Promise<UserDto> {
+  async findUser(@Res() res, @Param('id') id: string): Promise<UserDto> {
     try {
-      let userDto = await this.usersService.find(params.id);
+      let userDto = await this.usersService.find(id);
 
       return res.status(HttpStatus.OK).json(userDto);
+    } catch (error) {
+      return res.status(HttpStatus.FORBIDDEN);
+    }
+  }
+
+  @ApiParam({ name: 'page' })
+  @ApiParam({ name: 'limit' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: UserDto,
+    description: 'Registro creado correctamente',
+  })
+  @ApiResponse({
+    status: HttpStatus.FORBIDDEN,
+    description: 'El registro no pudo ser creado',
+  })
+  @Get('/find/all/:page/:limit')
+  async findAll(
+    @Res() res,
+    @Param('limit') limit: number,
+    @Param('page') page: number,
+  ) {
+    try {
+      let take = limit;
+      let skip = page * limit;
+      let usersDto = await this.usersService.findAll(skip, take);
+
+      return res.status(HttpStatus.OK).json(usersDto);
     } catch (error) {
       return res.status(HttpStatus.FORBIDDEN);
     }

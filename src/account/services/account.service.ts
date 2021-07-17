@@ -1,3 +1,4 @@
+import { AccountTypeEntity } from './../../account-type/models/account-type.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -10,8 +11,19 @@ export class AccountService {
     private usersRepository: Repository<AccountEntity>,
   ) {}
 
-  async findAll(typeId: number): Promise<AccountEntity[]> {
-    return this.usersRepository.find({ where: { accountTypeId: typeId } });
+  async findAll(
+    limitSkip: number,
+    limitTake: number,
+    accountType: AccountTypeEntity,
+  ): Promise<AccountEntity[]> {
+    return this.usersRepository.find({
+      where: { accountType: accountType },
+      order: {
+        id: 'DESC',
+      },
+      skip: limitSkip,
+      take: limitTake,
+    });
   }
 
   findOne(id: string): Promise<AccountEntity> {
