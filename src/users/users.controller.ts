@@ -53,7 +53,7 @@ export class UsersController {
   ) {
     try {
       let take = limit;
-      let skip = page * limit;
+      let skip = (page - 1) * limit;
       let usersDto = await this.usersService.findAll(skip, take);
 
       return res.status(HttpStatus.OK).json(usersDto);
