@@ -23,8 +23,8 @@ export class UsersController {
     status: HttpStatus.FORBIDDEN,
     description: 'El registro no pudo ser creado',
   })
-  @Get('/find/:id')
-  async findUser(@Res() res, @Param('id') id: string): Promise<UserDto> {
+  @Get('/:id')
+  async findOne(@Res() res, @Param('id') id: string): Promise<UserDto> {
     try {
       let userDto = await this.usersService.find(id);
 
@@ -45,7 +45,7 @@ export class UsersController {
     status: HttpStatus.FORBIDDEN,
     description: 'El registro no pudo ser creado',
   })
-  @Get('/find/all/:page/:limit')
+  @Get('/:page/:limit')
   async findAll(
     @Res() res,
     @Param('limit') limit: number,
