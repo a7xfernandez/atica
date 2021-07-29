@@ -8,8 +8,8 @@ import { AuthService } from "./services/auth.service";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { ApiKeyAuthGuard } from "./guards/apikey-auth.guard";
 
-@ApiTags('Autenticacion')
-@Controller('api/v1/auth')
+@ApiTags('auth')
+@Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 

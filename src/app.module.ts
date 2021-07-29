@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
@@ -23,6 +24,7 @@ import { PackagesModule } from './packages/packages.module';
       autoLoadEntities: true,
     }),
     CommonModule,
+    AuthModule,
     AccountsModule,
     AccountsCredentialsModule,
     AccountsProfilesModule,
