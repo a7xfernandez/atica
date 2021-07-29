@@ -9,7 +9,7 @@ import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { ApiKeyAuthGuard } from "./guards/apikey-auth.guard";
 
 @ApiTags('auth')
-@Controller('auth')
+@Controller('authenticate')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
@@ -17,16 +17,16 @@ export class AuthController {
   @ApiBody({ type: SignIn })
   @ApiResponse({ status: 200, type: AccessToken })
   @ApiUnauthorizedResponse()
-  /*@ApiHeader({
+  @ApiHeader({
     name: 'HTTP-X-API-KEY',
     description: 'Llave de servicio',
-  })*/
+  })
   @UseGuards(LocalAuthGuard)
   @ApiSecurity('api_key', ['api_key'])
   @UseGuards(ApiKeyAuthGuard)
-  @Post('login')
+  @Post()
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async login(@Req() req) {
+  async authenticate(@Req() req) {
     return this.authService.generateToken(req.user);
   }
 }
