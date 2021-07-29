@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { PackagesService } from './services/packages.service';
+import { PackagesService } from './packages.service';
 import { CreatePackageDto } from './dto/create-package.dto';
 import { UpdatePackageDto } from './dto/update-package.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Packages')
-@Controller(`packages`)
+@ApiTags('packages')
+@Controller('packages')
 export class PackagesController {
   constructor(private readonly packagesService: PackagesService) {}
 

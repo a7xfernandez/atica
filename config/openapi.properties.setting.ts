@@ -1,5 +1,5 @@
 export const OPENAPI = {
-  title: "Api.Backend.Services",
+  title: "api.tracking.services",
   description: "Catalog services" ,
   version: "1.0.0"
 };
