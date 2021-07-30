@@ -11,6 +11,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 
+@Entity()
 export class Account {
   @PrimaryGeneratedColumn()
   id: number;

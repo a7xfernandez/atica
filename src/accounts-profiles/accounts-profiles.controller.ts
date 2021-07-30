@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AccountsProfilesService } from './accounts-profiles.service';
+import { AccountsProfilesService } from './services/accounts-profiles.service';
 import { CreateAccountsProfileDto } from './dto/create-accounts-profile.dto';
 import { UpdateAccountsProfileDto } from './dto/update-accounts-profile.dto';
 
@@ -10,16 +10,6 @@ export class AccountsProfilesController {
   constructor(
     private readonly accountsProfilesService: AccountsProfilesService,
   ) {}
-
-  @Post()
-  create(@Body() createAccountsProfileDto: CreateAccountsProfileDto) {
-    return this.accountsProfilesService.create(createAccountsProfileDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.accountsProfilesService.findAll();
-  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

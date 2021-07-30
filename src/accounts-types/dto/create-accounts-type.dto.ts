@@ -1,1 +1,4 @@
-export class CreateAccountsTypeDto {}
+export class CreateAccountsTypeDto {
+  userType: string;
+  isActive: string;
+}
