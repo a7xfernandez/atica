@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { PackagesService } from './packages.service';
+import { PackagesService } from './services/packages.service';
 import { CreatePackageDto } from './dto/create-package.dto';
 import { UpdatePackageDto } from './dto/update-package.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -15,8 +15,10 @@ export class PackagesController {
   }
 
   @Get()
-  findAll() {
-    return this.packagesService.findAll();
+  findAll(@Param('limit') limit: number, @Param('page') page: number) {
+     let take = limit;
+     let skip = (page - 1) * limit;
+    return this.packagesService.findAll(skip, take);
   }
 
   @Get(':id')
