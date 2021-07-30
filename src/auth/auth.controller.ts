@@ -1,4 +1,4 @@
-import { SignIn } from "./dto/signin.dto";
+import { CreateAccessToken } from "./dto/create-access-token.dto";
 import { Controller, Req, Res, Post, UseGuards, Get } from "@nestjs/common";
 import { ApiTags, ApiBody, ApiResponse, ApiUnauthorizedResponse, ApiHeader, ApiSecurity } from "@nestjs/swagger";
 import { AccessToken } from "./dto/access-token.dto";
@@ -14,7 +14,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  @ApiBody({ type: SignIn })
+  @ApiBody({ type: CreateAccessToken })
   @ApiResponse({ status: 200, type: AccessToken })
   @ApiUnauthorizedResponse()
   @ApiHeader({
