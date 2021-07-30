@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { AccountsCredential } from 'src/accounts-credentials/entities/accounts-credential.entity';
 import { AccountsCredentialsService } from 'src/accounts-credentials/services/accounts-credentials.service';
 import { AccountsTypesService } from 'src/accounts-types/services/accounts-types.service';
+import { CreateAccountDto } from 'src/accounts/dto/create-account.dto';
 import { AccountsService } from 'src/accounts/services/accounts.service';
 import { CommonService } from 'src/common/services/common.service';
 import { CreateAgentDto } from '../dto/create-agent.dto';
@@ -15,8 +17,26 @@ export class AgentsService {
     private commonService: CommonService,
   ) {}
   
-  create(createAgentDto: CreateAgentDto) {
-    return 'This action adds a new agent';
+  async create(createAgentDto: CreateAgentDto) {
+    let accountType = await this.accountTypeService.findOneByUserType('Client');
+    let userNew = new CreateAccountDto(); 
+
+    userNew.accountTypeId.id = accountType.id; 
+    userNew.firstName = createAgentDto.firstName;
+    userNew.lastName = createAgentDto.lastName;
+    userNew.userName = createAgentDto.userName;
+    userNew.email = createAgentDto.email;
+    
+    let userEntity = await this.accountService.create(userNew);
+    let credential = new AccountsCredential();
+
+    credential.account = userEntity;
+    credential.credential = createAgentDto.password;
+    credential.isActive = true;
+
+    await this.credentialService.create(credential);
+
+    return userEntity;
   }
 
   async findAll(offset: number, take: number) {
