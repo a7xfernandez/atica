@@ -1,4 +1,5 @@
 import { AccountsTypeDto } from './../../accounts-types/dto/accounts-type.dto';
+
 export class AccountDto {
   id: number;
   firstName: string;

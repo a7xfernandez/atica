@@ -3,28 +3,24 @@ import { AccountsCredentialsService } from 'src/accounts-credentials/services/ac
 import { AccountsTypesService } from 'src/accounts-types/services/accounts-types.service';
 import { AccountsService } from 'src/accounts/services/accounts.service';
 import { CommonService } from 'src/common/services/common.service';
-import { CreateUserDto } from '../dto/create-user.dto';
-import { UpdateUserDto } from '../dto/update-user.dto';
+import { CreateAgentDto } from '../dto/create-agent.dto';
+import { UpdateAgentDto } from '../dto/update-agent.dto';
 
 @Injectable()
-export class UsersService {
+export class AgentsService {
   constructor(
     private accountService: AccountsService,
     private credentialService: AccountsCredentialsService,
     private accountTypeService: AccountsTypesService,
     private commonService: CommonService,
   ) {}
-
-  async create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  
+  create(createAgentDto: CreateAgentDto) {
+    return 'This action adds a new agent';
   }
 
   async findAll(offset: number, take: number) {
-    let typeEntity = await this.accountTypeService.findOneByUserType('User');
-    return await this.accountService.findAll(
-      offset,
-      take,
-      typeEntity,
-    );
+    let typeEntity = await this.accountTypeService.findOneByUserType('Client');
+    return await this.accountService.findAll(offset, take, typeEntity);
   }
 }

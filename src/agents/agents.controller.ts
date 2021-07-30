@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AgentsService } from './agents.service';
+import { AgentsService } from './services/agents.service';
 import { CreateAgentDto } from './dto/create-agent.dto';
 import { UpdateAgentDto } from './dto/update-agent.dto';
 
@@ -15,7 +15,13 @@ export class AgentsController {
   }
 
   @Get()
-  findAll() {
-    return this.agentsService.findAll();
+  findAll(
+    @Res() res,
+    @Param('limit') limit: number,
+    @Param('page') page: number,
+  ) {
+    let take = limit;
+    let skip = (page - 1) * limit;
+    return this.agentsService.findAll(skip, take);
   }
 }

@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CustomersService } from './customers.service';
+import { CustomersService } from './services/customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 
@@ -15,8 +15,13 @@ export class CustomersController {
   }
 
   @Get()
-  findAll() {
-    return this.customersService.findAll();
+  findAll(
+    @Res() res,
+    @Param('limit') limit: number,
+    @Param('page') page: number,
+  ) {
+    let take = limit;
+    let skip = (page - 1) * limit;
+    return this.customersService.findAll(skip, take);
   }
-
 }
