@@ -45,6 +45,17 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Running the app docker-compose
+
+```bash
+# development
+$ docker-compose up
+
+# rebuild images mode
+$ docker-compose up --build
+
+```
+
 ## Test
 
 ```bash
