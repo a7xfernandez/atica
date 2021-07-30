@@ -10,6 +10,7 @@ import { AgentsModule } from './agents/agents.module';
 import { UsersModule } from './users/users.module';
 import { CustomersModule } from './customers/customers.module';
 import { PackagesModule } from './packages/packages.module';
+import { AccountsTypesModule } from './accounts-types/accounts-types.module';
 
 
 
@@ -32,6 +33,7 @@ import { PackagesModule } from './packages/packages.module';
     UsersModule,
     CustomersModule,
     PackagesModule,
+    AccountsTypesModule,
   ],
   exports: [],
   controllers: [],
