@@ -13,11 +13,11 @@ export class AccountsService {
     private usersRepository: Repository<Account>,
   ) {}
 
-  create(createAccountDto: CreateAccountDto) {
-    return this.usersRepository.save(createAccountDto);
+  async create(createAccountDto: CreateAccountDto) {
+    return await this.usersRepository.save(createAccountDto);
   }
 
-  findAll(
+  async findAll(
     limitSkip: number,
     limitTake: number,
     accountType: AccountsType,
@@ -32,15 +32,15 @@ export class AccountsService {
     });
   }
 
-  findOne(id: number) {
-     return this.usersRepository.findOne(id);
+  async findOne(id: number) {
+    return await this.usersRepository.findOne(id);
   }
 
-  update(id: number, updateAccountDto: UpdateAccountDto) {
-    return this.usersRepository.update(id, updateAccountDto);
+  async update(id: number, updateAccountDto: UpdateAccountDto) {
+    return await this.usersRepository.update(id, updateAccountDto);
   }
 
-  remove(id: number) {
-    return this.usersRepository.softDelete(id);
+  async remove(id: number) {
+    return await this.usersRepository.softDelete(id);
   }
 }

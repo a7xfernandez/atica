@@ -14,22 +14,24 @@ export class AccountsCredentialsService {
     private credentialRepository: Repository<AccountsCredential>,
   ) {}
 
-  create(createAccountsCredentialDto: CreateAccountsCredentialDto) {
+  async create(createAccountsCredentialDto: CreateAccountsCredentialDto) {
     createAccountsCredentialDto.credential = this.commonService.hashPassword(
       createAccountsCredentialDto.credential,
     );
-    let credential = this.credentialRepository.save(createAccountsCredentialDto);
+    let credential = await this.credentialRepository.save(
+      createAccountsCredentialDto,
+    );
     return credential;
   }
 
-  findOne(id: number) {
-    return this.credentialRepository.findOne({
+  async findOne(id: number) {
+    return await this.credentialRepository.findOne({
       where: { accountId: id, isActive: true },
     });;
   }
 
-  remove(id: number) {
-    let credential = this.findOne(id);
+  async remove(id: number) {
+    let credential = await this.findOne(id);
     return this.credentialRepository.softDelete(id);
   }
 }

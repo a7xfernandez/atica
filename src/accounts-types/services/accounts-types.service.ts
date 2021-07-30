@@ -12,16 +12,17 @@ export class AccountsTypesService {
     private typesRepository: Repository<AccountsType>,
   ) {}
 
-  findAll() {
-    return this.typesRepository.find();
+  async findAll() {
+    return await this.typesRepository.find();
   }
 
-  findOne(id: number) {
-    return this.typesRepository.findOne(id);
+  async findOne(id: number) {
+    return await this.typesRepository.findOne(id);
   }
 
-  findOneByUserType(typeUser: string) {
-    return this.typesRepository.findOne({ where: { userType: typeUser } });
+  async findOneByUserType(typeUser: string) {
+    return await this.typesRepository.findOne({
+      where: { userType: typeUser },
+    });
   }
-
 }

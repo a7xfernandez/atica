@@ -12,12 +12,12 @@ export class PackagesService {
     private packageRepository: Repository<Package>,
   ) {}
 
-  create(createPackageDto: CreatePackageDto) {
-    return this.packageRepository.save(createPackageDto);
+  async create(createPackageDto: CreatePackageDto) {
+    return await this.packageRepository.save(createPackageDto);
   }
 
-  findAll(limitSkip: number, limitTake: number) {
-    return this.packageRepository.find({
+  async findAll(limitSkip: number, limitTake: number) {
+    return await this.packageRepository.find({
       order: {
         id: 'DESC',
       },
@@ -26,15 +26,15 @@ export class PackagesService {
     });
   }
 
-  findOne(id: number) {
-    return this.packageRepository.findOne(id);
+  async findOne(id: number) {
+    return await this.packageRepository.findOne(id);
   }
 
-  update(id: number, updatePackageDto: UpdatePackageDto) {
-    return this.packageRepository.update(id, updatePackageDto);
+  async update(id: number, updatePackageDto: UpdatePackageDto) {
+    return await this.packageRepository.update(id, updatePackageDto);
   }
 
-  remove(id: number) {
-    return this.packageRepository.softDelete(id);
+  async remove(id: number) {
+    return await this.packageRepository.softDelete(id);
   }
 }

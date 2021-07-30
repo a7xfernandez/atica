@@ -58,6 +58,18 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Enviroment
+
+create file .env.development
+
+PG_URI= postgres://user:password@localhost:5432/db
+JWT_SECRET=b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79
+API_KEY=EAB0A38835EBA59230EF98D8879DC2C198DF96AF
+APP_URL=https://app.parking.com
+PREFIX= api
+VERSION= v1
+ENV= development
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).

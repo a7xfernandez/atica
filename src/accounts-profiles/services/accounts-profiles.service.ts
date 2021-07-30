@@ -12,17 +12,17 @@ export class AccountsProfilesService {
     private profileRepository: Repository<AccountsProfile>,
   ) {}
 
-  findOne(id: number) {
-    return this.profileRepository.findOne({
+  async findOne(id: number) {
+    return await this.profileRepository.findOne({
       where: { accountId: id, isActive: true },
     });
   }
 
-  update(id: number, updateAccountsProfileDto: UpdateAccountsProfileDto) {
-    return this.profileRepository.update(id, updateAccountsProfileDto);
+  async update(id: number, updateAccountsProfileDto: UpdateAccountsProfileDto) {
+    return await this.profileRepository.update(id, updateAccountsProfileDto);
   }
 
-  remove(id: number) {
-     return this.profileRepository.softDelete(id);
+  async remove(id: number) {
+     return await this.profileRepository.softDelete(id);
   }
 }
