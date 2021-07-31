@@ -1,15 +1,28 @@
-export class CreatePackageDto {
-    id: number;
-    description: string;
-    weigth: number;
-    WightUnits: string;
-    volumen: number;
-    units: string;
-    large: number;
-    heigth: number;
-    width: number;
-    created!: Date;
-    updated!: Date;
-    deletedAt?: Date;
+import { ApiProperty } from "@nestjs/swagger";
 
+export class CreatePackageDto {
+  @ApiProperty()
+  id: number;
+  @ApiProperty()
+  description: string;
+  @ApiProperty()
+  weigth: number;
+  @ApiProperty()
+  WightUnits: string;
+  @ApiProperty()
+  volumen: number;
+  @ApiProperty()
+  units: string;
+  @ApiProperty()
+  large: number;
+  @ApiProperty()
+  heigth: number;
+  @ApiProperty()
+  width: number;
+  @ApiProperty()
+  created!: Date;
+  @ApiProperty()
+  updated!: Date;
+  @ApiProperty()
+  deletedAt?: Date;
 }
