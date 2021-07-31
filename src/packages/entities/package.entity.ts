@@ -15,7 +15,7 @@ export class Package {
   WightUnits: string;
 
   @Column()
-  lbsWeigth: number;
+  Weigth: number;
 
   @Column()
   volumen: number;
