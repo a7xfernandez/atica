@@ -5,12 +5,12 @@ import * as bcrypt from 'bcrypt';
 export class CommonService {
   private readonly saltRounds = 10;
 
-  VerifyPassword(password: string, compare: string): Promise<boolean> {
-    return  bcrypt.compare(password, compare);
+  async VerifyPassword(password: string, compare: string): Promise<boolean> {
+    return await bcrypt.compare(password, compare);
   }
 
-  hashPassword(password: string){
-    const salt =  bcrypt.genSalt(this.saltRounds);
-    return  bcrypt.hash(password, salt);
+  async hashPassword(password: string){
+    const salt = await  bcrypt.genSalt(this.saltRounds);
+    return await bcrypt.hash(password, salt);
   }
 }

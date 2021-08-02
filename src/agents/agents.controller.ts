@@ -14,7 +14,7 @@ export class AgentsController {
     return this.agentsService.create(createAgentDto);
   }
 
-  @Get()
+  @Get('/:page/:limit')
   findAll(
     @Res() res,
     @Param('limit') limit: number,

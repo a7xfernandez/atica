@@ -9,10 +9,10 @@ export class AccountsCredentialDto {
   account: Account;
   @ApiProperty()
   isActive: boolean;
-  @ApiProperty()
+
   created!: Date;
-  @ApiProperty()
+
   updated!: Date;
-  @ApiProperty()
+
   deletedAt?: Date;
 }

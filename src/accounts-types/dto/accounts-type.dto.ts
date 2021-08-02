@@ -7,10 +7,8 @@ export class AccountsTypeDto {
   userType: string;
   @ApiProperty()
   isActive: string;
-  @ApiProperty()
+ 
   created!: Date;
-  @ApiProperty()
   updated!: Date;
-  @ApiProperty()
   deletedAt?: Date;
 }

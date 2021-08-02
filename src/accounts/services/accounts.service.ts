@@ -14,7 +14,12 @@ export class AccountsService {
   ) {}
 
   async create(createAccountDto: CreateAccountDto) {
-    return await this.usersRepository.save(createAccountDto);
+     let user = await this.usersRepository.create(createAccountDto);
+     user.accountType = createAccountDto.accountTypeId;
+     console.log(user);
+     await this.usersRepository.save(user);
+
+     return user;
   }
 
   async findAll(

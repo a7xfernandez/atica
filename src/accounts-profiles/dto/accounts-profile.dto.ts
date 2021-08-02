@@ -10,10 +10,10 @@ export class AccountsProfileDto {
   account: AccountDto;
   @ApiProperty()
   isActive: string;
-  @ApiProperty()
+
   created!: Date;
-  @ApiProperty()
+
   updated!: Date;
-  @ApiProperty()
+
   deletedAt?: Date;
 }

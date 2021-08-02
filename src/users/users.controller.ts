@@ -14,7 +14,7 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get()
+  @Get('/:page/:limit')
   findAll(
     @Res() res,
     @Param('limit') limit: number,

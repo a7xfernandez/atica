@@ -15,7 +15,7 @@ export class AccountsCredentialsService {
   ) {}
 
   async create(createAccountsCredentialDto: CreateAccountsCredentialDto) {
-    createAccountsCredentialDto.credential = this.commonService.hashPassword(
+    createAccountsCredentialDto.credential = await this.commonService.hashPassword(
       createAccountsCredentialDto.credential,
     );
     let credential = await this.credentialRepository.save(

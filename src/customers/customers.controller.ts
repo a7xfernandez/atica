@@ -13,8 +13,8 @@ export class CustomersController {
   create(@Body() createCustomerDto: CreateCustomerDto) {
     return this.customersService.create(createCustomerDto);
   }
-
-  @Get()
+  
+  @Get('/:page/:limit')
   findAll(
     @Res() res,
     @Param('limit') limit: number,

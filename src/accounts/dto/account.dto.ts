@@ -14,9 +14,8 @@ export class AccountDto {
   email: string;
   @ApiProperty()
   accountType: AccountsTypeDto;
+
   created!: Date;
-  @ApiProperty()
   updated!: Date;
-  @ApiProperty()
   deletedAt?: Date;
 }

@@ -23,12 +23,14 @@ export class UsersService {
     let accountType = await this.accountTypeService.findOneByUserType('User');
     let userNew = new CreateAccountDto(); 
 
-    userNew.accountTypeId.id = accountType.id; 
+    console.log(accountType);
+
+    userNew.accountTypeId = accountType; 
     userNew.firstName = createUserDto.firstName;
     userNew.lastName = createUserDto.lastName;
     userNew.userName = createUserDto.userName;
     userNew.email = createUserDto.email;
-    
+ 
     let userEntity = await this.accountService.create(userNew);
     let credential = new AccountsCredential();
 
@@ -36,8 +38,8 @@ export class UsersService {
     credential.credential = createUserDto.password;
     credential.isActive = true;
 
-    await this.credentialService.create(credential);
-
+    let credentials = await this.credentialService.create(credential);
+    
     return userEntity;
   }
 
