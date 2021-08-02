@@ -20,14 +20,14 @@ export class CustomersService {
   async create(createCustomerDto: CreateCustomerDto) {
 
     let accountType = await this.accountTypeService.findOneByUserType('Client');
-    let userNew = new CreateAccountDto(); 
+    let userNew = new CreateAccountDto();
 
-    userNew.accountTypeId.id = accountType.id; 
+    userNew.accountTypeId = accountType;
     userNew.firstName = createCustomerDto.firstName;
     userNew.lastName = createCustomerDto.lastName;
     userNew.userName = createCustomerDto.userName;
     userNew.email = createCustomerDto.email;
-    
+
     let userEntity = await this.accountService.create(userNew);
     let credential = new AccountsCredential();
 
@@ -35,7 +35,7 @@ export class CustomersService {
     credential.credential = createCustomerDto.password;
     credential.isActive = true;
 
-    await this.credentialService.create(credential);
+    let credentials = await this.credentialService.create(credential);
 
     return userEntity;
   }

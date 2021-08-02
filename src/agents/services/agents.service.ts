@@ -19,14 +19,14 @@ export class AgentsService {
   
   async create(createAgentDto: CreateAgentDto) {
     let accountType = await this.accountTypeService.findOneByUserType('Client');
-    let userNew = new CreateAccountDto(); 
+    let userNew = new CreateAccountDto();
 
-    userNew.accountTypeId.id = accountType.id; 
+    userNew.accountTypeId = accountType;
     userNew.firstName = createAgentDto.firstName;
     userNew.lastName = createAgentDto.lastName;
     userNew.userName = createAgentDto.userName;
     userNew.email = createAgentDto.email;
-    
+
     let userEntity = await this.accountService.create(userNew);
     let credential = new AccountsCredential();
 
@@ -34,7 +34,7 @@ export class AgentsService {
     credential.credential = createAgentDto.password;
     credential.isActive = true;
 
-    await this.credentialService.create(credential);
+    let credentials = await this.credentialService.create(credential);
 
     return userEntity;
   }
