@@ -12,10 +12,7 @@ export class Package {
   weigth: number;
 
   @Column()
-  WightUnits: string;
-
-  @Column()
-  Weigth: number;
+  wightUnits: string;
 
   @Column()
   volumen: number;

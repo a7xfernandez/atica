@@ -8,7 +8,7 @@ export class CreatePackageDto {
   @ApiProperty()
   weigth: number;
   @ApiProperty()
-  WightUnits: string;
+  wightUnits: string;
   @ApiProperty()
   volumen: number;
   @ApiProperty()
