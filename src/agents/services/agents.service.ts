@@ -18,7 +18,7 @@ export class AgentsService {
   ) {}
   
   async create(createAgentDto: CreateAgentDto) {
-    let accountType = await this.accountTypeService.findOneByUserType('Client');
+    let accountType = await this.accountTypeService.findOneByUserType('Agent');
     let userNew = new CreateAccountDto();
 
     userNew.accountTypeId = accountType;
@@ -40,7 +40,8 @@ export class AgentsService {
   }
 
   async findAll(offset: number, take: number) {
-    let typeEntity = await this.accountTypeService.findOneByUserType('Client');
-    return await this.accountService.findAll(offset, take, typeEntity);
+    let typeEntity = await this.accountTypeService.findOneByUserType('Agent');
+    let users = await this.accountService.findAll(offset, take, typeEntity);
+    return users;
   }
 }

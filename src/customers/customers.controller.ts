@@ -16,7 +16,6 @@ export class CustomersController {
   
   @Get('/:page/:limit')
   findAll(
-    @Res() res,
     @Param('limit') limit: number,
     @Param('page') page: number,
   ) {

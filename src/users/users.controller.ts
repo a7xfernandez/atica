@@ -15,8 +15,7 @@ export class UsersController {
   }
 
   @Get('/:page/:limit')
-  findAll(
-    @Res() res,
+  async findAll(
     @Param('limit') limit: number,
     @Param('page') page: number,
   ) {

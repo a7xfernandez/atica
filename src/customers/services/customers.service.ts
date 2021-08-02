@@ -42,6 +42,7 @@ export class CustomersService {
 
   async findAll(offset: number, take: number) {
     let typeEntity = await this.accountTypeService.findOneByUserType('Client');
-    return await this.accountService.findAll(offset, take, typeEntity);
+    let users = await this.accountService.findAll(offset, take, typeEntity);
+    return users;
   }
 }

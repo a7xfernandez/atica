@@ -18,7 +18,6 @@ export class PackagesController {
   async findAll(@Param('limit') limit: number, @Param('page') page: number) {
     let take = limit;
     let skip = (page - 1) * limit;
-
     return this.packagesService.findAll(skip, take);
   }
 

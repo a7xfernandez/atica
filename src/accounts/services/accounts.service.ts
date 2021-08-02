@@ -27,7 +27,7 @@ export class AccountsService {
     limitTake: number,
     accountType: AccountsType,
   ) {
-    return this.usersRepository.find({
+    return await this.usersRepository.find({
       where: { accountType: accountType },
       order: {
         id: 'DESC',
