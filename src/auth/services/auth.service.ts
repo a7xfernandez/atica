@@ -6,17 +6,20 @@ import { Injectable } from '@nestjs/common';
 //import { EmpleadosService } from '../../empleados/services/empleados.service';
 import { JwtService } from '@nestjs/jwt';
 import { AccessToken } from '../dto/access-token.dto';
+import { AccountsService } from 'src/accounts/services/accounts.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    //private empleadoService: EmpleadosService,
+    private accountService: AccountsService,
     private jwtService: JwtService,
   ) {}
 
-  async validate(email: string, password: string)//: //Promise<IEmpleado> 
-  {
-   /*const empleado = await this.empleadoService.findByEmail(email);
+  async validate(
+    email: string,
+    password: string, //: //Promise<IEmpleado>
+  ) {
+    /*const empleado = await this.empleadoService.findByEmail(email);
     let compare: string;
     try {
       compare = empleado.password;
