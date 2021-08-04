@@ -20,13 +20,18 @@ export class AuthService {
     password: string
   ) {
     const user = await this.accountService.findByEmail(email);
+    
     let compare: string;
     try {
-      const secret = await this.credentialService.findOne(user.id);
+      console.log(user);
+      const secret = await this.credentialService.findByAccount(user);
+      console.log(secret);
       compare = secret.credential;
     } catch (error) {
       compare = '';
+      console.log(error);;
     }
+     console.log(compare);
    
    const statePassword = await this.commonService.VerifyPassword(
       password,
@@ -41,6 +46,7 @@ export class AuthService {
   }
 
   async generateToken(user): Promise<AccessToken> {
+    console.log(user)
     const payload = { jwtid: uuidv4(), username: user.userName, sub: user.id };
     return new AccessToken({
       access_token: this.jwtService.sign(payload),

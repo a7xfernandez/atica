@@ -9,9 +9,11 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ApiKeyStrategy } from './strategies/api-key.strategy';
+import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
 
 @Module({
   imports: [
+    ConfigDefaultModule,
     AccountsModule,
     AccountsCredentialsModule,
     CommonModule,

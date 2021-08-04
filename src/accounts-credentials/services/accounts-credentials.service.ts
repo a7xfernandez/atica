@@ -15,19 +15,26 @@ export class AccountsCredentialsService {
   ) {}
 
   async create(createAccountsCredentialDto: CreateAccountsCredentialDto) {
-    createAccountsCredentialDto.credential = await this.commonService.hashPassword(
-      createAccountsCredentialDto.credential,
-    );
+    createAccountsCredentialDto.credential =
+      await this.commonService.hashPassword(
+        createAccountsCredentialDto.credential,
+      );
     let credential = await this.credentialRepository.save(
       createAccountsCredentialDto,
     );
     return credential;
   }
 
+  async findByAccount(user) {
+    return await this.credentialRepository.findOne({
+      where: { account: user, isActive: true },
+    });
+  }
+
   async findOne(id: number) {
     return await this.credentialRepository.findOne({
-      where: { accountId: id, isActive: true },
-    });;
+      where: { id: id, isActive: true },
+    });
   }
 
   async remove(id: number) {
