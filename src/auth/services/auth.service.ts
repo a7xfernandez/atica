@@ -41,7 +41,7 @@ export class AuthService {
   }
 
   async generateToken(user): Promise<AccessToken> {
-    const payload = { jwtid: uuidv4(), username: user.usuario, sub: user.id };
+    const payload = { jwtid: uuidv4(), username: user.userName, sub: user.id };
     return new AccessToken({
       access_token: this.jwtService.sign(payload),
     });
