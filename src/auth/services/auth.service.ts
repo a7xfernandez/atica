@@ -1,38 +1,42 @@
 import { v4 as uuidv4 } from 'uuid';
-//import { Empleado } from './../../empleados/dto/empleado.dto';
-//import { AccessToken } from './../dto/access-token.dto';
-//import { IEmpleado } from './../../empleados/interfaces/empleado.interface';
 import { Injectable } from '@nestjs/common';
-//import { EmpleadosService } from '../../empleados/services/empleados.service';
 import { JwtService } from '@nestjs/jwt';
 import { AccessToken } from '../dto/access-token.dto';
 import { AccountsService } from 'src/accounts/services/accounts.service';
+import { AccountsCredentialsService } from 'src/accounts-credentials/services/accounts-credentials.service';
+import { CommonService } from 'src/common/services/common.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private accountService: AccountsService,
+    private credentialService: AccountsCredentialsService,
+    private commonService: CommonService,
     private jwtService: JwtService,
   ) {}
 
   async validate(
     email: string,
-    password: string, //: //Promise<IEmpleado>
+    password: string
   ) {
-    /*const empleado = await this.empleadoService.findByEmail(email);
+    const user = await this.accountService.findByEmail(email);
     let compare: string;
     try {
-      compare = empleado.password;
+      const secret = await this.credentialService.findOne(user.id);
+      compare = secret.credential;
     } catch (error) {
       compare = '';
     }
-    const statePassword = await this.empleadoService.VerifyPassword(
+   
+   const statePassword = await this.commonService.VerifyPassword(
       password,
       compare,
     );
-    if (empleado && statePassword) {
-      return empleado;
-    }*/
+
+    if (user && statePassword) {
+      return user;
+    }
+    
     return null;
   }
 

@@ -14,12 +14,12 @@ export class AccountsService {
   ) {}
 
   async create(createAccountDto: CreateAccountDto) {
-     let user = await this.usersRepository.create(createAccountDto);
-     user.accountType = createAccountDto.accountTypeId;
-     console.log(user);
-     await this.usersRepository.save(user);
+    let user = await this.usersRepository.create(createAccountDto);
+    user.accountType = createAccountDto.accountTypeId;
+    console.log(user);
+    await this.usersRepository.save(user);
 
-     return user;
+    return user;
   }
 
   async findAll(
@@ -39,6 +39,12 @@ export class AccountsService {
 
   async findOne(id: number) {
     return await this.usersRepository.findOne(id);
+  }
+
+  async findByEmail(email: string) {
+    return await this.usersRepository.findOne({
+      where: { email: email },
+    });
   }
 
   async update(id: number, updateAccountDto: UpdateAccountDto) {
