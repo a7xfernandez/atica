@@ -4,16 +4,16 @@ import { CreateAccountsTypeDto } from './dto/create-accounts-type.dto';
 import { UpdateAccountsTypeDto } from './dto/update-accounts-type.dto';
 import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AccountsTypeDto } from './dto/accounts-type.dto';
 
 @ApiTags('accounts-types')
 @Controller('accounts-types')
 export class AccountsTypesController {
   constructor(private readonly accountsTypesService: AccountsTypesService) {}
 
-  @ApiBody({})
   @ApiResponse({
     status: 200,
-    type: CreateAccountsTypeDto,
+    type: [AccountsTypeDto],
     description: 'procesado correctamente',
   })
   @ApiBearerAuth()
@@ -24,10 +24,9 @@ export class AccountsTypesController {
     return this.accountsTypesService.findAll();
   }
 
-  @ApiBody({})
   @ApiResponse({
     status: 200,
-    type: CreateAccountsTypeDto,
+    type: AccountsTypeDto,
     description: 'procesado correctamente',
   })
   @ApiBearerAuth()

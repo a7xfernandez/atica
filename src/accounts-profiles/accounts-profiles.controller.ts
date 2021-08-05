@@ -5,6 +5,7 @@ import { AccountsProfilesService } from './services/accounts-profiles.service';
 import { CreateAccountsProfileDto } from './dto/create-accounts-profile.dto';
 import { UpdateAccountsProfileDto } from './dto/update-accounts-profile.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AcctionResponseDto } from 'src/common/dto/acction-response.dto';
 
 @ApiTags('accounts-profiles')
 @Controller('accounts-profiles')
@@ -13,7 +14,6 @@ export class AccountsProfilesController {
     private readonly accountsProfilesService: AccountsProfilesService,
   ) {}
 
-  @ApiBody({})
   @ApiResponse({
     status: 200,
     type: AccountsProfileDto,
@@ -30,7 +30,7 @@ export class AccountsProfilesController {
   @ApiBody({ type: UpdateAccountsProfileDto })
   @ApiResponse({
     status: 200,
-    type: AccountsProfileDto,
+    type: AcctionResponseDto,
     description: 'procesado correctamente',
   })
   @ApiBearerAuth()
@@ -44,10 +44,10 @@ export class AccountsProfilesController {
     return this.accountsProfilesService.update(+id, updateAccountsProfileDto);
   }
 
-  @ApiBody({})
+
   @ApiResponse({
     status: 200,
-    type: AccountsProfileDto,
+    type: AcctionResponseDto,
     description: 'procesado correctamente',
   })
   @ApiBearerAuth()

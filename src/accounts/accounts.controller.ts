@@ -6,6 +6,7 @@ import { CreateAccountDto } from './dto/create-account.dto';
 import { UpdateAccountDto } from './dto/update-account.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { AccountDto } from './dto/account.dto';
+import { AcctionResponseDto } from 'src/common/dto/acction-response.dto';
 
 @ApiTags('accounts')
 @Controller('accounts')
@@ -29,7 +30,7 @@ export class AccountsController {
   @ApiBody({ type: UpdateAccountDto })
   @ApiResponse({
     status: 200,
-    type: AccountDto,
+    type: AcctionResponseDto,
     description: 'procesado correctamente',
   })
   @ApiUnauthorizedResponse()
@@ -40,9 +41,9 @@ export class AccountsController {
     return this.accountsService.update(+id, updateAccountDto);
   }
 
-  @ApiBody({})
   @ApiResponse({
     status: 200,
+    type: AcctionResponseDto,
     description: 'procesado correctamente',
   })
   @ApiBearerAuth()

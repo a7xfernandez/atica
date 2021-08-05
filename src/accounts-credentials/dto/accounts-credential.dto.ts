@@ -6,7 +6,8 @@ export class AccountsCredentialDto {
   @ApiProperty()
   id: number;
   @ApiProperty()
-  account: Account;
+  account: AccountDto;
+
   @ApiProperty()
   isActive: boolean;
 

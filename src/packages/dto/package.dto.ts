@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreatePackageDto {
+export class PackageDto {
   @ApiProperty()
   id: number;
   @ApiProperty()
@@ -19,10 +19,10 @@ export class CreatePackageDto {
   heigth: number;
   @ApiProperty()
   width: number;
-  @ApiProperty()
+
   created!: Date;
-  @ApiProperty()
+
   updated!: Date;
-  @ApiProperty()
+
   deletedAt?: Date;
 }
