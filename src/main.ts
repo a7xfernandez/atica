@@ -19,6 +19,7 @@ async function bootstrap() {
     .setTitle(OPENAPI.title)
     .setDescription(OPENAPI.description)
     .setVersion(OPENAPI.version)
+    .addBearerAuth()
     .build();
    const document = SwaggerModule.createDocument(app, config);
 
