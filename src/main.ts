@@ -10,6 +10,12 @@ async function bootstrap() {
   app.setGlobalPrefix(`${process.env.PREFIX}/${process.env.VERSION}`);
 
   const config = new DocumentBuilder()
+    .addApiKey({
+      type: 'apiKey',
+      name: 'HTTP-X-API-KEY',
+      in: 'header',
+      description: 'Llave de servicio',
+    })
     .setTitle(OPENAPI.title)
     .setDescription(OPENAPI.description)
     .setVersion(OPENAPI.version)

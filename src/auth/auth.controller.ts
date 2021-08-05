@@ -13,19 +13,17 @@ import { ApiKeyAuthGuard } from "./guards/apikey-auth.guard";
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @ApiBody({ type: CreateAccessToken })
   @ApiResponse({ status: 200, type: AccessToken })
   @ApiUnauthorizedResponse()
-  //@ApiHeader({
-  //   name: 'HTTP-X-API-KEY',
-  //  description: 'Llave de servicio',
-  //})
+  @ApiHeader({
+     name: 'HTTP-X-API-KEY',
+    description: 'Llave de servicio',
+  })
   @UseGuards(LocalAuthGuard)
-  //@ApiSecurity('api_key', ['api_key'])
-  //@UseGuards(ApiKeyAuthGuard)
+  @ApiSecurity('api_key', ['api_key'])
+  @UseGuards(ApiKeyAuthGuard)
   @Post()
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async authenticate(@Req() req) {
     return this.authService.generateToken(req.user);
   }

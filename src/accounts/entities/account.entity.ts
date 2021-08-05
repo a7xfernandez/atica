@@ -16,18 +16,19 @@ export class Account {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 45 })
+  @Column({ length: 45, nullable: false })
   firstName: string;
 
-  @Column({ length: 45 })
+  @Column({ length: 45, nullable: false })
   lastName: string;
 
   @Index()
-  @Column({ length: 45 })
+  @Column({ length: 45, nullable: false })
   userName: string;
 
-  @Column({ length: 45 })
+  @Index()
   @IsEmail()
+  @Column({ length: 45, unique: true, nullable: false })
   email: string;
 
   @ManyToOne(() => AccountsType, (accountType) => accountType.id)
