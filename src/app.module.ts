@@ -19,12 +19,7 @@ import { AccountsTypesModule } from './accounts-types/accounts-types.module';
     ConfigDefaultModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      //url: process.env.DATABASE_URL,
-      host: 'ec2-34-204-128-77.compute-1.amazonaws.com',
-      port: 5432,
-      username: 'oknnstjwgwkupt',
-      password: '8eb87888d7480d562654afa1930bbaff8977742983bbebb1a68fd81bb7e310bb',
-      database: 'd693e6gcq8ld7f',
+      url: process.env.DATABASE_URL,
       entities: [],
       synchronize: true,
       autoLoadEntities: true,
