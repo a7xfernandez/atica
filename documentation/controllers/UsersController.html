@@ -58,6 +58,12 @@
             <code>src/users/users.controller.ts</code>
         </p>
 
+            <p class="comment">
+                <h3>Prefix</h3>
+            </p>
+            <p class="comment">
+                <code>users</code>
+            </p>
 
 
 
@@ -78,12 +84,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#getUser" >getUser</a>
+                                <a href="#findAll" >findAll</a>
                             </li>
                         </ul>
                     </td>
@@ -108,7 +113,6 @@
                 <td class="col-md-4">
                     <a name="create"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -116,8 +120,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(res, createUserReqDto: <a href="../classes/UserCreateDto.html" target="_self">UserCreateDto</a>)</code>
+<code>create(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
@@ -125,14 +128,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiBody({type: UserCreateDto})<br />@ApiResponse({status: undefined, type: UserDto, description: &#x27;Registro creado correctamente&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;El registro no pudo ser creado&#x27;})<br />@Post(&#x27;/create&#x27;)<br /></code>
+                    <code>@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/users/users.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/users/users.controller.ts:13</a></div>
                 </td>
             </tr>
 
@@ -152,20 +155,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>res</td>
+                                    <td>createUserDto</td>
                                     <td>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>createUserReqDto</td>
-                                    <td>
-                                                <code><a href="../classes/UserCreateDto.html" target="_self" >UserCreateDto</a></code>
+                                                <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
                                     </td>
 
                                     <td>
@@ -180,7 +172,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/UserDto.html" target="_self" >Promise&lt;UserDto&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">
@@ -194,18 +186,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getUser"></a>
+                    <a name="findAll"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>getUser</b></span>
-                        <a href="#getUser"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getUser(res, params)</code>
+                    <code>findAll(limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -213,14 +205,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiParam({name: &#x27;id&#x27;})<br />@ApiResponse({status: undefined, type: UserDto, description: &#x27;Registro creado correctamente&#x27;})<br />@ApiResponse({status: undefined, description: &#x27;El registro no pudo ser creado&#x27;})<br />@Get(&#x27;/find/:id&#x27;)<br /></code>
+                    <code>@Get(&#x27;/:page/:limit&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/users/users.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/users/users.controller.ts:18</a></div>
                 </td>
             </tr>
 
@@ -234,12 +226,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>res</td>
+                                    <td>limit</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -248,7 +244,10 @@
 
                                 </tr>
                                 <tr>
-                                    <td>params</td>
+                                    <td>page</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -262,7 +261,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/UserDto.html" target="_self" >Promise&lt;UserDto&gt;</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -276,67 +275,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Get, HttpStatus, Param, Post, Res } from &#x27;@nestjs/common&#x27;;
-import { ApiBody, ApiParam, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
-import { ApplicationConfigs } from &#x27;config/application.properties.settings&#x27;;
-import { AccountCredentialEntity } from &#x27;src/account-credential/models/account-credential.entity&#x27;;
-import { AccountEntity } from &#x27;src/account/models/account.entity&#x27;;
-import { UserCreateDto } from &#x27;./dto/user.create.request.dto&#x27;;
-import { UserIdDto } from &#x27;./dto/user.id.dto&#x27;;
-import { UserDto } from &#x27;./dto/user.response.dto&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from &#x27;@nestjs/common&#x27;;
 import { UsersService } from &#x27;./services/users.service&#x27;;
+import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
+import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 
-@ApiTags(&#x27;Users&#x27;)
-@Controller(&#x60;users&#x60;)
+@ApiTags(&#x27;users&#x27;)
+@Controller(&#x27;users&#x27;)
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {}
 
-  @ApiParam({ name:&quot;id&quot; })
-  @ApiResponse({
-    status: HttpStatus.OK,
-    type: UserDto,
-    description: &#x27;Registro creado correctamente&#x27;,
-  })
-  @ApiResponse({
-    status: HttpStatus.FORBIDDEN,
-    description: &#x27;El registro no pudo ser creado&#x27;,
-  })
-  @Get(&#x27;/find/:id&#x27;)
-  async getUser(@Res() res, @Param() params): Promise&lt;UserDto&gt; {
-    try {
-      let userDto &#x3D; await this.usersService.find(params.id);
-
-      return res.status(HttpStatus.OK).json(userDto);
-    } catch (error) {
-      return res.status(HttpStatus.FORBIDDEN);
-    }
+  @Post()
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
   }
 
-  @ApiBody({ type: UserCreateDto })
-  @ApiResponse({
-    status: HttpStatus.OK,
-    type: UserDto,
-    description: &#x27;Registro creado correctamente&#x27;,
-  })
-  @ApiResponse({
-    status: HttpStatus.FORBIDDEN,
-    description: &#x27;El registro no pudo ser creado&#x27;,
-  })
-  @Post(&#x27;/create&#x27;)
-  async create(
-    @Res() res,
-    @Body() createUserReqDto: UserCreateDto,
-  ): Promise&lt;UserDto&gt; {
-    try {
-      let userDto &#x3D; await this.usersService.create(createUserReqDto);
-
-      return res.status(HttpStatus.OK).json(userDto);
-    } catch (error) {
-      return res.status(HttpStatus.FORBIDDEN);
-    }
+  @Get(&#x27;/:page/:limit&#x27;)
+  async findAll(
+    @Param(&#x27;limit&#x27;) limit: number,
+    @Param(&#x27;page&#x27;) page: number,
+  ) {
+    let take &#x3D; limit;
+    let skip &#x3D; (page - 1) * limit;
+    return this.usersService.findAll(skip, take);
   }
 }
-
 </code></pre>
     </div>
 </div>

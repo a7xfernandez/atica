@@ -179,7 +179,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;string&gt;</code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -327,8 +327,8 @@ export class CommonService {
     return await bcrypt.compare(password, compare);
   }
 
- async hashPassword(password: string): Promise&lt;string&gt; {
-    const salt &#x3D; await bcrypt.genSalt(this.saltRounds);
+  async hashPassword(password: string){
+    const salt &#x3D; await  bcrypt.genSalt(this.saltRounds);
     return await bcrypt.hash(password, salt);
   }
 }

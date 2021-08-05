@@ -63,7 +63,13 @@ $ npm run start
 $ npm run start:dev
 
 # production mode
-$ npm run start:prod</code></pre></div><h2 id="test">Test</h2>
+$ npm run start:prod</code></pre></div><h2 id="running-the-app-docker-compose">Running the app docker-compose</h2>
+<div><pre class="line-numbers"><code class="language-bash"># development
+$ docker-compose up
+
+# rebuild images mode
+$ docker-compose up --build
+</code></pre></div><h2 id="test">Test</h2>
 <div><pre class="line-numbers"><code class="language-bash"># unit tests
 $ npm run test
 
@@ -71,7 +77,16 @@ $ npm run test
 $ npm run test:e2e
 
 # test coverage
-$ npm run test:cov</code></pre></div><h2 id="support">Support</h2>
+$ npm run test:cov</code></pre></div><h2 id="enviroment">Enviroment</h2>
+<p>create file .env.development</p>
+<div><pre class="line-numbers"><code class="language-none">PG_URI= postgres://user:password&#64;localhost:5432/db
+JWT_SECRET=b221d9dbb083a7f33428d7c2a3c3198ae925614d70210e28716ccaa7cd4ddb79
+API_KEY=EAB0A38835EBA59230EF98D8879DC2C198DF96AF
+APP_URL=https://app.parking.com
+APP_ISS= tracking
+PREFIX= api
+VERSION= v1
+ENV= development</code></pre></div><h2 id="support">Support</h2>
 <p>Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you&#39;d like to join them, please <a href="https://docs.nestjs.com/support">read more here</a>.</p>
 <h2 id="stay-in-touch">Stay in touch</h2>
 <ul>

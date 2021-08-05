@@ -83,7 +83,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#find" >find</a>
+                                <a href="#findAll" >findAll</a>
                             </li>
                         </ul>
                     </td>
@@ -103,12 +103,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(accountService: <a href="../injectables/AccountService.html" target="_self">AccountService</a>, credentialService: <a href="../injectables/AccountCredentialService.html" target="_self">AccountCredentialService</a>, accountTypeService: <a href="../injectables/AccountTypeService.html" target="_self">AccountTypeService</a>, commonService: <a href="../injectables/CommonService.html" target="_self">CommonService</a>)</code>
+<code>constructor(accountService: <a href="../injectables/AccountsService.html" target="_self">AccountsService</a>, credentialService: <a href="../injectables/AccountsCredentialsService.html" target="_self">AccountsCredentialsService</a>, accountTypeService: <a href="../injectables/AccountsTypesService.html" target="_self">AccountsTypesService</a>, commonService: <a href="../injectables/CommonService.html" target="_self">CommonService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/users/services/users.service.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/users/services/users.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -129,7 +129,7 @@
                                                         <td>accountService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AccountService.html" target="_self" >AccountService</a></code>
+                                                                        <code><a href="../injectables/AccountsService.html" target="_self" >AccountsService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -141,7 +141,7 @@
                                                         <td>credentialService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AccountCredentialService.html" target="_self" >AccountCredentialService</a></code>
+                                                                        <code><a href="../injectables/AccountsCredentialsService.html" target="_self" >AccountsCredentialsService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -153,7 +153,7 @@
                                                         <td>accountTypeService</td>
                                                   
                                                         <td>
-                                                                        <code><a href="../injectables/AccountTypeService.html" target="_self" >AccountTypeService</a></code>
+                                                                        <code><a href="../injectables/AccountsTypesService.html" target="_self" >AccountsTypesService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -202,15 +202,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(userDto: <a href="../classes/UserCreateDto.html" target="_self">UserCreateDto</a>)</code>
+                    <code>create(createUserDto: <a href="../classes/CreateUserDto.html" target="_self">CreateUserDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/users/services/users.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="21"
+                            class="link-to-prism">src/users/services/users.service.ts:21</a></div>
                 </td>
             </tr>
 
@@ -230,9 +230,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>userDto</td>
+                                    <td>createUserDto</td>
                                     <td>
-                                                <code><a href="../classes/UserCreateDto.html" target="_self" >UserCreateDto</a></code>
+                                                <code><a href="../classes/CreateUserDto.html" target="_self" >CreateUserDto</a></code>
                                     </td>
 
                                     <td>
@@ -247,7 +247,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/UserDto.html" target="_self" >Promise&lt;UserDto&gt;</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -261,26 +261,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="find"></a>
+                    <a name="findAll"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>find</b></span>
-                        <a href="#find"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>find(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>findAll(offset: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, take: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/users/services/users.service.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/users/services/users.service.ts:44</a></div>
                 </td>
             </tr>
 
@@ -300,9 +300,21 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>userId</td>
+                                    <td>offset</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>take</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -317,7 +329,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/UserDto.html" target="_self" >Promise&lt;UserDto&gt;</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
                     </div>
                     <div class="io-description">
@@ -333,67 +345,54 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AccountTypeService } from &#x27;./../../account-type/services/account-type.service&#x27;;
-import { CommonService } from &#x27;./../../common/services/common.service&#x27;;
-import { UserCreateDto } from &#x27;./../dto/user.create.request.dto&#x27;;
-import { AccountCredentialService } from &#x27;./../../account-credential/services/account-credential.service&#x27;;
-import { AccountCredentialEntity } from &#x27;./../../account-credential/models/account-credential.entity&#x27;;
-import { AccountEntity } from &#x27;./../../account/models/account.entity&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CreateAccountDto } from &#x27;./../../accounts/dto/create-account.dto&#x27;;
+import { Account } from &#x27;./../../accounts/entities/account.entity&#x27;;
 import { Injectable } from &#x27;@nestjs/common&#x27;;
-import { AccountService } from &#x27;src/account/services/account.service&#x27;;
-
-import { UserDto } from &#x27;../dto/user.response.dto&#x27;;
-import { UserIdDto } from &#x27;../dto/user.id.dto&#x27;;
+import { AccountsCredentialsService } from &#x27;src/accounts-credentials/services/accounts-credentials.service&#x27;;
+import { AccountsTypesService } from &#x27;src/accounts-types/services/accounts-types.service&#x27;;
+import { AccountsService } from &#x27;src/accounts/services/accounts.service&#x27;;
+import { CommonService } from &#x27;src/common/services/common.service&#x27;;
+import { CreateUserDto } from &#x27;../dto/create-user.dto&#x27;;
+import { UpdateUserDto } from &#x27;../dto/update-user.dto&#x27;;
+import { AccountsCredential } from &#x27;src/accounts-credentials/entities/accounts-credential.entity&#x27;;
 
 @Injectable()
 export class UsersService {
   constructor(
-    private accountService: AccountService,
-    private credentialService: AccountCredentialService,
-    private accountTypeService: AccountTypeService,
+    private accountService: AccountsService,
+    private credentialService: AccountsCredentialsService,
+    private accountTypeService: AccountsTypesService,
     private commonService: CommonService,
   ) {}
 
-  async find(userId:string): Promise&lt;UserDto&gt; {
-    let userResDto: UserDto &#x3D; new UserDto();
-    let userEntity &#x3D; await this.accountService.findOne(userId);
+  async create(createUserDto: CreateUserDto) {
 
-    userResDto.id &#x3D; userEntity.id;
-    userResDto.email &#x3D; userEntity.email;
-    userResDto.firstName &#x3D; userEntity.firstName;
-    userResDto.lastName &#x3D; userEntity.lastName;
-    userResDto.userName &#x3D; userEntity.userName;
+    let accountType &#x3D; await this.accountTypeService.findOneByUserType(&#x27;User&#x27;);
+    let userNew &#x3D; new CreateAccountDto(); 
 
-    return userResDto;
-  }
-
-  async create(userDto: UserCreateDto): Promise&lt;UserDto&gt; {
-    let userNew &#x3D; new AccountEntity();
-    let credential &#x3D; new AccountCredentialEntity();
-    let userResDto: UserDto &#x3D; new UserDto();
-
-    userNew.firstName &#x3D; userDto.firstName;
-    userNew.lastName &#x3D; userDto.lastName;
-    userNew.userName &#x3D; userDto.userName;
-    userNew.email &#x3D; userDto.email;
-
-    userNew.accountType &#x3D; await this.accountTypeService.findOneType(&#x27;User&#x27;);
-
-    let userEntity &#x3D; await this.accountService.save(userNew);
+    userNew.accountTypeId &#x3D; accountType; 
+    userNew.firstName &#x3D; createUserDto.firstName;
+    userNew.lastName &#x3D; createUserDto.lastName;
+    userNew.userName &#x3D; createUserDto.userName;
+    userNew.email &#x3D; createUserDto.email;
+ 
+    let userEntity &#x3D; await this.accountService.create(userNew);
+    let credential &#x3D; new AccountsCredential();
 
     credential.account &#x3D; userEntity;
-    credential.credential &#x3D; userDto.password;
+    credential.credential &#x3D; createUserDto.password;
     credential.isActive &#x3D; true;
 
-    await this.credentialService.save(credential);
+    let credentials &#x3D; await this.credentialService.create(credential);
 
-    userResDto.id &#x3D; userEntity.id;
-    userResDto.email &#x3D; userEntity.email;
-    userResDto.firstName &#x3D; userEntity.firstName;
-    userResDto.lastName &#x3D; userEntity.lastName;
-    userResDto.userName &#x3D; userEntity.userName;
+    return userEntity;
+  }
 
-    return userResDto;
+  async findAll(offset: number, take: number) {
+
+    let typeEntity &#x3D; await this.accountTypeService.findOneByUserType(&#x27;User&#x27;);
+    let users &#x3D; await this.accountService.findAll( offset,take, typeEntity);
+    return users; 
   }
 }
 </code></pre>
