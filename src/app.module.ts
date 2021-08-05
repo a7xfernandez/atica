@@ -23,6 +23,9 @@ import { AccountsTypesModule } from './accounts-types/accounts-types.module';
       entities: [],
       synchronize: true,
       autoLoadEntities: true,
+      extra: {
+        ssl: true,
+      },
     }),
     CommonModule,
     AccountsTypesModule,
