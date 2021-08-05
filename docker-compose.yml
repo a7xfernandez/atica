@@ -10,7 +10,7 @@ services:
             - /usr/src/app/node_modules
         command: npm run start:dev
         environment: 
-            - PG_URI=postgres://pgsqlapp:pgsqlapp1@postgresql/backendTrackingApp
+            - DATABASE_URL=postgres://pgsqlapp:pgsqlapp1@postgresql/backendTrackingApp
             - PREFIX=api
             - VERSION=v1
             - ENV=development

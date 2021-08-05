@@ -19,7 +19,7 @@ import { AccountsTypesModule } from './accounts-types/accounts-types.module';
     ConfigDefaultModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.PG_URI,
+      url: process.env.DATABASE_URL,
       entities: [],
       synchronize: true,
       autoLoadEntities: true,
