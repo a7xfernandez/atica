@@ -1,5 +1,5 @@
 import { AuthModule } from './auth/auth.module';
-import { Module } from '@nestjs/common';
+import { Module,  } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
 import { CommonModule } from './common/common.module';
@@ -11,7 +11,6 @@ import { UsersModule } from './users/users.module';
 import { CustomersModule } from './customers/customers.module';
 import { PackagesModule } from './packages/packages.module';
 import { AccountsTypesModule } from './accounts-types/accounts-types.module';
-
 
 
 @Module({
