@@ -3,9 +3,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { PackagesService } from './services/packages.service';
 import { CreatePackageDto } from './dto/create-package.dto';
 import { UpdatePackageDto } from './dto/update-package.dto';
-import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiHeader, ApiResponse, ApiSecurity, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { PackageDto } from './dto/package.dto';
+import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 
 @ApiTags('packages')
 @Controller('packages')
@@ -20,7 +21,12 @@ export class PackagesController {
   })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse()
-  @UseGuards(JwtAuthGuard)
+   @ApiHeader({
+     name: 'HTTP-X-API-KEY',
+    description: 'Llave de servicio',
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity('api_key', ['api_key'])
   @Post()
   create(@Body() createPackageDto: CreatePackageDto) {
     return this.packagesService.create(createPackageDto);
@@ -33,7 +39,12 @@ export class PackagesController {
   })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse()
-  @UseGuards(JwtAuthGuard)
+   @ApiHeader({
+     name: 'HTTP-X-API-KEY',
+    description: 'Llave de servicio',
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity('api_key', ['api_key'])
   @Get('/:page/:limit')
   async findAll(@Param('limit') limit: number, @Param('page') page: number) {
     let take = limit;
@@ -48,7 +59,12 @@ export class PackagesController {
   })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse()
-  @UseGuards(JwtAuthGuard)
+   @ApiHeader({
+     name: 'HTTP-X-API-KEY',
+    description: 'Llave de servicio',
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity('api_key', ['api_key'])
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.packagesService.findOne(+id);
@@ -62,7 +78,12 @@ export class PackagesController {
   })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse()
-  @UseGuards(JwtAuthGuard)
+   @ApiHeader({
+     name: 'HTTP-X-API-KEY',
+    description: 'Llave de servicio',
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity('api_key', ['api_key'])
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePackageDto: UpdatePackageDto) {
     return this.packagesService.update(+id, updatePackageDto);
@@ -75,7 +96,12 @@ export class PackagesController {
   })
   @ApiBearerAuth()
   @ApiUnauthorizedResponse()
-  @UseGuards(JwtAuthGuard)
+   @ApiHeader({
+     name: 'HTTP-X-API-KEY',
+    description: 'Llave de servicio',
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity('api_key', ['api_key'])
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.packagesService.remove(+id);

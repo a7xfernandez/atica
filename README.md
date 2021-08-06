@@ -70,6 +70,9 @@ $ npm run test:cov
 ```
 
 ## Enviroment
+```
+nest g resource tapp
+```
 
 create file .env.development
 

@@ -127,14 +127,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@ApiResponse({status: 200, type: undefined, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@UseGuards(JwtAuthGuard)<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/accounts-types/accounts-types.controller.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/accounts-types/accounts-types.controller.ts:23</a></div>
                 </td>
             </tr>
 
@@ -171,14 +171,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiResponse({status: 200, type: AccountsTypeDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/accounts-types/accounts-types.controller.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="36"
+                            class="link-to-prism">src/accounts-types/accounts-types.controller.ts:36</a></div>
                 </td>
             </tr>
 
@@ -229,22 +229,40 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { AccountsTypesService } from &#x27;./services/accounts-types.service&#x27;;
 import { CreateAccountsTypeDto } from &#x27;./dto/create-accounts-type.dto&#x27;;
 import { UpdateAccountsTypeDto } from &#x27;./dto/update-accounts-type.dto&#x27;;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags, ApiUnauthorizedResponse } from &#x27;@nestjs/swagger&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
+import { AccountsTypeDto } from &#x27;./dto/accounts-type.dto&#x27;;
 
 @ApiTags(&#x27;accounts-types&#x27;)
 @Controller(&#x27;accounts-types&#x27;)
 export class AccountsTypesController {
   constructor(private readonly accountsTypesService: AccountsTypesService) {}
 
+  @ApiResponse({
+    status: 200,
+    type: [AccountsTypeDto],
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.accountsTypesService.findAll();
   }
 
+  @ApiResponse({
+    status: 200,
+    type: AccountsTypeDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: string) {
     return this.accountsTypesService.findOne(+id);

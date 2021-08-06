@@ -137,14 +137,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@ApiBody({type: CreatePackageDto})<br />@ApiResponse({status: 200, type: PackageDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@ApiHeader({name: &#x27;HTTP-X-API-KEY&#x27;, description: &#x27;Llave de servicio&#x27;})<br />@UseGuards(LocalAuthGuard)<br />@ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/packages/packages.controller.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/packages/packages.controller.ts:31</a></div>
                 </td>
             </tr>
 
@@ -214,14 +214,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:page/:limit&#x27;)<br /></code>
+                    <code>@ApiResponse({status: 200, type: undefined, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@ApiHeader({name: &#x27;HTTP-X-API-KEY&#x27;, description: &#x27;Llave de servicio&#x27;})<br />@UseGuards(LocalAuthGuard)<br />@ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])<br />@Get(&#x27;/:page/:limit&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/packages/packages.controller.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="49"
+                            class="link-to-prism">src/packages/packages.controller.ts:49</a></div>
                 </td>
             </tr>
 
@@ -301,14 +301,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiResponse({status: 200, type: PackageDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@ApiHeader({name: &#x27;HTTP-X-API-KEY&#x27;, description: &#x27;Llave de servicio&#x27;})<br />@UseGuards(LocalAuthGuard)<br />@ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/packages/packages.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/packages/packages.controller.ts:69</a></div>
                 </td>
             </tr>
 
@@ -376,14 +376,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiResponse({status: 200, type: AcctionResponseDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@ApiHeader({name: &#x27;HTTP-X-API-KEY&#x27;, description: &#x27;Llave de servicio&#x27;})<br />@UseGuards(LocalAuthGuard)<br />@ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/packages/packages.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="106"
+                            class="link-to-prism">src/packages/packages.controller.ts:106</a></div>
                 </td>
             </tr>
 
@@ -451,14 +451,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiBody({type: UpdatePackageDto})<br />@ApiResponse({status: 200, type: AcctionResponseDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@ApiHeader({name: &#x27;HTTP-X-API-KEY&#x27;, description: &#x27;Llave de servicio&#x27;})<br />@UseGuards(LocalAuthGuard)<br />@ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/packages/packages.controller.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="88"
+                            class="link-to-prism">src/packages/packages.controller.ts:88</a></div>
                 </td>
             </tr>
 
@@ -521,22 +521,53 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AcctionResponseDto } from &#x27;./../common/dto/acction-response.dto&#x27;;
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { PackagesService } from &#x27;./services/packages.service&#x27;;
 import { CreatePackageDto } from &#x27;./dto/create-package.dto&#x27;;
 import { UpdatePackageDto } from &#x27;./dto/update-package.dto&#x27;;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import { ApiBearerAuth, ApiBody, ApiHeader, ApiResponse, ApiSecurity, ApiTags, ApiUnauthorizedResponse } from &#x27;@nestjs/swagger&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
+import { PackageDto } from &#x27;./dto/package.dto&#x27;;
+import { LocalAuthGuard } from &#x27;src/auth/guards/local-auth.guard&#x27;;
 
 @ApiTags(&#x27;packages&#x27;)
 @Controller(&#x27;packages&#x27;)
 export class PackagesController {
   constructor(private readonly packagesService: PackagesService) {}
 
+  @ApiBody({ type: CreatePackageDto })
+  @ApiResponse({
+    status: 200,
+    type: PackageDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+   @ApiHeader({
+     name: &#x27;HTTP-X-API-KEY&#x27;,
+    description: &#x27;Llave de servicio&#x27;,
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])
   @Post()
   create(@Body() createPackageDto: CreatePackageDto) {
     return this.packagesService.create(createPackageDto);
   }
 
+  @ApiResponse({
+    status: 200,
+    type: [PackageDto],
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+   @ApiHeader({
+     name: &#x27;HTTP-X-API-KEY&#x27;,
+    description: &#x27;Llave de servicio&#x27;,
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])
   @Get(&#x27;/:page/:limit&#x27;)
   async findAll(@Param(&#x27;limit&#x27;) limit: number, @Param(&#x27;page&#x27;) page: number) {
     let take &#x3D; limit;
@@ -544,16 +575,56 @@ export class PackagesController {
     return this.packagesService.findAll(skip, take);
   }
 
+  @ApiResponse({
+    status: 200,
+    type: PackageDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+   @ApiHeader({
+     name: &#x27;HTTP-X-API-KEY&#x27;,
+    description: &#x27;Llave de servicio&#x27;,
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: string) {
     return this.packagesService.findOne(+id);
   }
 
+  @ApiBody({ type: UpdatePackageDto })
+  @ApiResponse({
+    status: 200,
+    type: AcctionResponseDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+   @ApiHeader({
+     name: &#x27;HTTP-X-API-KEY&#x27;,
+    description: &#x27;Llave de servicio&#x27;,
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])
   @Patch(&#x27;:id&#x27;)
   update(@Param(&#x27;id&#x27;) id: string, @Body() updatePackageDto: UpdatePackageDto) {
     return this.packagesService.update(+id, updatePackageDto);
   }
 
+  @ApiResponse({
+    status: 200,
+    type: AcctionResponseDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+   @ApiHeader({
+     name: &#x27;HTTP-X-API-KEY&#x27;,
+    description: &#x27;Llave de servicio&#x27;,
+  })
+  @UseGuards(LocalAuthGuard)
+  @ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])
   @Delete(&#x27;:id&#x27;)
   remove(@Param(&#x27;id&#x27;) id: string) {
     return this.packagesService.remove(+id);

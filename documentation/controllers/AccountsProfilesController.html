@@ -130,14 +130,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiResponse({status: 200, type: AccountsProfileDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/accounts-profiles/accounts-profiles.controller.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/accounts-profiles/accounts-profiles.controller.ts:26</a></div>
                 </td>
             </tr>
 
@@ -205,14 +205,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiResponse({status: 200, type: AcctionResponseDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/accounts-profiles/accounts-profiles.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/accounts-profiles/accounts-profiles.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -280,14 +280,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiBody({type: UpdateAccountsProfileDto})<br />@ApiResponse({status: 200, type: AcctionResponseDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/accounts-profiles/accounts-profiles.controller.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/accounts-profiles/accounts-profiles.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -350,11 +350,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete } from &#x27;@nestjs/common&#x27;;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AccountsProfileDto } from &#x27;./dto/accounts-profile.dto&#x27;;
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from &#x27;@nestjs/common&#x27;;
+import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags, ApiUnauthorizedResponse } from &#x27;@nestjs/swagger&#x27;;
 import { AccountsProfilesService } from &#x27;./services/accounts-profiles.service&#x27;;
 import { CreateAccountsProfileDto } from &#x27;./dto/create-accounts-profile.dto&#x27;;
 import { UpdateAccountsProfileDto } from &#x27;./dto/update-accounts-profile.dto&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
+import { AcctionResponseDto } from &#x27;src/common/dto/acction-response.dto&#x27;;
 
 @ApiTags(&#x27;accounts-profiles&#x27;)
 @Controller(&#x27;accounts-profiles&#x27;)
@@ -363,11 +366,28 @@ export class AccountsProfilesController {
     private readonly accountsProfilesService: AccountsProfilesService,
   ) {}
 
+  @ApiResponse({
+    status: 200,
+    type: AccountsProfileDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: string) {
     return this.accountsProfilesService.findOne(+id);
   }
 
+  @ApiBody({ type: UpdateAccountsProfileDto })
+  @ApiResponse({
+    status: 200,
+    type: AcctionResponseDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
   @Patch(&#x27;:id&#x27;)
   update(
     @Param(&#x27;id&#x27;) id: string,
@@ -376,6 +396,15 @@ export class AccountsProfilesController {
     return this.accountsProfilesService.update(+id, updateAccountsProfileDto);
   }
 
+
+  @ApiResponse({
+    status: 200,
+    type: AcctionResponseDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
   @Delete(&#x27;:id&#x27;)
   remove(@Param(&#x27;id&#x27;) id: string) {
     return this.accountsProfilesService.remove(+id);

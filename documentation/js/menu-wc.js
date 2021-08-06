@@ -434,6 +434,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/AccountsTypeDto.html" data-type="entity-link" >AccountsTypeDto</a>
                             </li>
                             <li class="link">
+                                <a href="classes/AcctionResponseDto.html" data-type="entity-link" >AcctionResponseDto</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/Agent.html" data-type="entity-link" >Agent</a>
                             </li>
                             <li class="link">
@@ -461,9 +464,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/CreatePackageDto.html" data-type="entity-link" >CreatePackageDto</a>
                             </li>
                             <li class="link">
-                                <a href="classes/CreatePackageDto-1.html" data-type="entity-link" >CreatePackageDto</a>
-                            </li>
-                            <li class="link">
                                 <a href="classes/CreateUserDto.html" data-type="entity-link" >CreateUserDto</a>
                             </li>
                             <li class="link">
@@ -471,6 +471,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/Package.html" data-type="entity-link" >Package</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/PackageDto.html" data-type="entity-link" >PackageDto</a>
                             </li>
                             <li class="link">
                                 <a href="classes/UpdateAccountDto.html" data-type="entity-link" >UpdateAccountDto</a>

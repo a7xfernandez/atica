@@ -127,14 +127,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiBody({type: CreateAccessToken})<br />@ApiResponse({status: 200, type: AccessToken})<br />@ApiUnauthorizedResponse()<br />@UseGuards(LocalAuthGuard)<br />@Post()<br /></code>
+                    <code>@ApiBody({type: CreateAccessToken})<br />@ApiResponse({status: 200, type: AccessToken})<br />@ApiUnauthorizedResponse()<br />@ApiHeader({name: &#x27;HTTP-X-API-KEY&#x27;, description: &#x27;Llave de servicio&#x27;})<br />@UseGuards(LocalAuthGuard)<br />@ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])<br />@UseGuards(ApiKeyAuthGuard)<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/auth/auth.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/auth/auth.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -196,19 +196,17 @@ import { ApiKeyAuthGuard } from &quot;./guards/apikey-auth.guard&quot;;
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @ApiBody({ type: CreateAccessToken })
   @ApiResponse({ status: 200, type: AccessToken })
   @ApiUnauthorizedResponse()
-  //@ApiHeader({
-  //   name: &#x27;HTTP-X-API-KEY&#x27;,
-  //  description: &#x27;Llave de servicio&#x27;,
-  //})
+  @ApiHeader({
+     name: &#x27;HTTP-X-API-KEY&#x27;,
+    description: &#x27;Llave de servicio&#x27;,
+  })
   @UseGuards(LocalAuthGuard)
-  //@ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])
-  //@UseGuards(ApiKeyAuthGuard)
+  @ApiSecurity(&#x27;api_key&#x27;, [&#x27;api_key&#x27;])
+  @UseGuards(ApiKeyAuthGuard)
   @Post()
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async authenticate(@Req() req) {
     return this.authService.generateToken(req.user);
   }

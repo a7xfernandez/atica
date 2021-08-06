@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { CustomersModule } from './customers/customers.module';
 import { PackagesModule } from './packages/packages.module';
 import { AccountsTypesModule } from './accounts-types/accounts-types.module';
+import { TappModule } from './tapp/tapp.module';
 
 
 @Module({
@@ -39,6 +40,7 @@ import { AccountsTypesModule } from './accounts-types/accounts-types.module';
     CustomersModule,
     PackagesModule,
     AuthModule,
+    TappModule,
   ],
   exports: [],
   controllers: [],

@@ -128,14 +128,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@ApiBody({type: CreateUserDto})<br />@ApiResponse({status: 200, type: AccountDto, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@UseGuards(JwtAuthGuard)<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="13"
-                            class="link-to-prism">src/users/users.controller.ts:13</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/users/users.controller.ts:24</a></div>
                 </td>
             </tr>
 
@@ -205,14 +205,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;/:page/:limit&#x27;)<br /></code>
+                    <code>@ApiResponse({status: 200, type: undefined, description: &#x27;procesado correctamente&#x27;})<br />@ApiBearerAuth()<br />@ApiUnauthorizedResponse()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;/:page/:limit&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="18"
-                            class="link-to-prism">src/users/users.controller.ts:18</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/users/users.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -275,27 +275,43 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete, Res } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete, Res, UseGuards } from &#x27;@nestjs/common&#x27;;
 import { UsersService } from &#x27;./services/users.service&#x27;;
 import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
 import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
-import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags, ApiUnauthorizedResponse } from &#x27;@nestjs/swagger&#x27;;
+import { AccountDto } from &#x27;src/accounts/dto/account.dto&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
 
 @ApiTags(&#x27;users&#x27;)
 @Controller(&#x27;users&#x27;)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @ApiBody({ type: CreateUserDto })
+  @ApiResponse({
+    status: 200,
+    type: AccountDto,
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
 
+  @ApiResponse({
+    status: 200,
+    type: [AccountDto],
+    description: &#x27;procesado correctamente&#x27;,
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
   @Get(&#x27;/:page/:limit&#x27;)
-  async findAll(
-    @Param(&#x27;limit&#x27;) limit: number,
-    @Param(&#x27;page&#x27;) page: number,
-  ) {
+  async findAll(@Param(&#x27;limit&#x27;) limit: number, @Param(&#x27;page&#x27;) page: number) {
     let take &#x3D; limit;
     let skip &#x3D; (page - 1) * limit;
     return this.usersService.findAll(skip, take);
