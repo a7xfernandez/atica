@@ -47,6 +47,12 @@ export class AccountsService {
     });
   }
 
+  async findByuserName(userName: string) {
+    return await this.usersRepository.findOne({
+      where: { userName: userName },
+    });
+  }
+
   async update(id: number, updateAccountDto: UpdateAccountDto) {
     return await this.usersRepository.update(id, updateAccountDto);
   }

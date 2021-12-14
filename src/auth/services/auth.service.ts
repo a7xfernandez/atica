@@ -16,10 +16,10 @@ export class AuthService {
   ) {}
 
   async validate(
-    email: string,
+    username: string,
     password: string
   ) {
-    const user = await this.accountService.findByEmail(email);
+    const user = await this.accountService.findByuserName(username);
     
     let compare: string;
     try {
