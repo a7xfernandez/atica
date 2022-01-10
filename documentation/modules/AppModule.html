@@ -285,35 +285,37 @@ import { AccountsTypesModule } from &#x27;./accounts-types/accounts-types.module
 
 
 @Module({
-  imports: [
-    ConfigDefaultModule,
-    TypeOrmModule.forRoot({
-      type: &#x27;postgres&#x27;,
-      url: process.env.DATABASE_URL,
-      entities: [],
-      synchronize: true,
-      autoLoadEntities: true,
-      ssl: true,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false
+    imports: [
+      ConfigDefaultModule,
+      TypeOrmModule.forRoot({
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        entities: [],
+        synchronize: true,
+        autoLoadEntities: true,
+        ssl: true,
+        extra: {
+          ssl: {
+            rejectUnauthorized: false
+          }
         }
-      }
-    }),
-    CommonModule,
-    AccountsTypesModule,
-    AccountsModule,
-    AccountsCredentialsModule,
-    AccountsProfilesModule,
-    AgentsModule,
-    UsersModule,
-    CustomersModule,
-    PackagesModule,
-    AuthModule,
-  ],
-  exports: [],
-  controllers: [],
-})
+      }),
+      CommonModule,
+      AccountsTypesModule,
+      AccountsModule,
+      AccountsCredentialsModule,
+      AccountsProfilesModule,
+      AgentsModule,
+      UsersModule,
+      CustomersModule,
+      PackagesModule,
+      AuthModule,
+      EmbarcationsModule,
+      LogisticOperatorsModule,
+    ],
+    exports: [],
+    controllers: [],
+  })
 export class AppModule {}
 </code></pre>
     </div>

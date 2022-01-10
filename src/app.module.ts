@@ -11,6 +11,8 @@ import { UsersModule } from './users/users.module';
 import { CustomersModule } from './customers/customers.module';
 import { PackagesModule } from './packages/packages.module';
 import { AccountsTypesModule } from './accounts-types/accounts-types.module';
+import { EmbarcationsModule } from './embarcations/embarcations.module';
+import { LogisticOperatorsModule } from './logistic-operators/logistic-operators.module';
 
 
 @Module({
@@ -38,7 +40,9 @@ import { AccountsTypesModule } from './accounts-types/accounts-types.module';
     UsersModule,
     CustomersModule,
     PackagesModule,
-    AuthModule
+    AuthModule,
+    EmbarcationsModule,
+    LogisticOperatorsModule,
   ],
   exports: [],
   controllers: [],
