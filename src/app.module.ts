@@ -13,6 +13,9 @@ import { PackagesModule } from './packages/packages.module';
 import { AccountsTypesModule } from './accounts-types/accounts-types.module';
 import { EmbarcationsModule } from './embarcations/embarcations.module';
 import { LogisticOperatorsModule } from './logistic-operators/logistic-operators.module';
+import { ShipmentAddressesModule } from './shipment-addresses/shipment-addresses.module';
+import { AddressTypesModule } from './address-types/address-types.module';
+import { AddressesModule } from './addresses/addresses.module';
 
 
 @Module({
@@ -43,6 +46,9 @@ import { LogisticOperatorsModule } from './logistic-operators/logistic-operators
     AuthModule,
     EmbarcationsModule,
     LogisticOperatorsModule,
+    ShipmentAddressesModule,
+    AddressTypesModule,
+    AddressesModule,    
   ],
   exports: [],
   controllers: [],

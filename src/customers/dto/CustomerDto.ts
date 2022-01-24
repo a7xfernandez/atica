@@ -1,7 +1,11 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { CreateAddressDto } from "src/addresses/dto/create-address.dto";
 
-export class CreateCustomerDto {
+export class CustomerDto{
+    
+  @ApiProperty()
+  id: number;
+
   @ApiProperty()
   firstName: string;
 
@@ -22,4 +26,10 @@ export class CreateCustomerDto {
   
   @ApiProperty({type:[CreateAddressDto]})
   Addresses: CreateAddressDto[];
+
+  created!: Date;
+
+  updated!: Date;
+
+  deletedAt?: Date;
 }

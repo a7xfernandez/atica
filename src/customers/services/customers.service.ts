@@ -4,6 +4,7 @@ import { AccountsCredentialsService } from 'src/accounts-credentials/services/ac
 import { AccountsTypesService } from 'src/accounts-types/services/accounts-types.service';
 import { CreateAccountDto } from 'src/accounts/dto/create-account.dto';
 import { AccountsService } from 'src/accounts/services/accounts.service';
+import { AddressesService } from 'src/addresses/addresses.service';
 import { CommonService } from 'src/common/services/common.service';
 import { CreateCustomerDto } from '../dto/create-customer.dto';
 import { UpdateCustomerDto } from '../dto/update-customer.dto';
@@ -14,6 +15,7 @@ export class CustomersService {
     private accountService: AccountsService,
     private credentialService: AccountsCredentialsService,
     private accountTypeService: AccountsTypesService,
+    private addressService: AddressesService,
     private commonService: CommonService,
   ) {}
 
@@ -36,6 +38,8 @@ export class CustomersService {
     credential.isActive = true;
 
     let credentials = await this.credentialService.create(credential);
+
+    let address = await this.addressService.insertList(userEntity.id,createCustomerDto.Addresses);
 
     return userEntity;
   }

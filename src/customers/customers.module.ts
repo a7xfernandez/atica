@@ -7,6 +7,8 @@ import { AccountsCredentialsModule } from 'src/accounts-credentials/accounts-cre
 import { AccountsProfilesModule } from 'src/accounts-profiles/accounts-profiles.module';
 import { AccountsTypesModule } from 'src/accounts-types/accounts-types.module';
 import { CommonModule } from 'src/common/common.module';
+import { ShipmentAddressesModule } from 'src/shipment-addresses/shipment-addresses.module';
+import { AddressesModule } from 'src/addresses/addresses.module';
 
 @Module({
   imports: [
@@ -14,9 +16,11 @@ import { CommonModule } from 'src/common/common.module';
     AccountsModule,
     AccountsCredentialsModule,
     AccountsProfilesModule,
-    AccountsTypesModule,
+    AccountsTypesModule,    
     CommonModule,
+    AddressesModule,    
   ],
+  exports: [CustomersService],
   controllers: [CustomersController],
   providers: [CustomersService],
 })

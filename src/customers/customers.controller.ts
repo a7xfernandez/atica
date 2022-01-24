@@ -5,6 +5,7 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { AccountDto } from 'src/accounts/dto/account.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { CustomerDto } from './dto/CustomerDto';
 
 @ApiTags('customers')
 @Controller('customers')
@@ -27,7 +28,7 @@ export class CustomersController {
 
   @ApiResponse({
     status: 200,
-    type: [AccountDto],
+    type: [CustomerDto],
     description: 'procesado correctamente',
   })
   @ApiBearerAuth()

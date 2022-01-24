@@ -1,5 +1,6 @@
 import { IsEmail } from 'class-validator';
 import { AccountsType } from 'src/accounts-types/entities/accounts-type.entity';
+import { Address } from 'src/addresses/entities/address.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -9,6 +10,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -33,6 +35,9 @@ export class Account {
 
   @ManyToOne(() => AccountsType, (accountType) => accountType.id)
   accountType: AccountsType;
+
+  @OneToMany(()=>Address,(address)=>address.account)  
+  address: Address[];
 
   @CreateDateColumn()
   created!: Date;
