@@ -1,7 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { addressTypeDto } from "src/address-types/dto/address-type.dto";
 
-export class CreateAddressDto {
+export class addressDto {
+    @ApiProperty()
+    id:number;
 
     @ApiProperty()
     contactName: string;
@@ -32,4 +34,10 @@ export class CreateAddressDto {
 
     @ApiProperty()
     addressType: number;
+    
+    created!: Date; 
+    
+    updated!: Date; 
+    
+    deletedAt?: Date;
 }

@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { addressDto } from "src/common/dto/address.dto";
+import { addressDto } from "src/addresses/dto/address.dto";
+
 import { CreateShipmentAddressDto } from "src/shipment-addresses/dto/create-shipment-address.dto";
 
 export class externalCreateCustomerDto {

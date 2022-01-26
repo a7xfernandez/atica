@@ -3,10 +3,13 @@ import { AccountsCredential } from 'src/accounts-credentials/entities/accounts-c
 import { AccountsCredentialsService } from 'src/accounts-credentials/services/accounts-credentials.service';
 import { AccountsTypesService } from 'src/accounts-types/services/accounts-types.service';
 import { CreateAccountDto } from 'src/accounts/dto/create-account.dto';
+import { Account } from 'src/accounts/entities/account.entity';
 import { AccountsService } from 'src/accounts/services/accounts.service';
 import { AddressesService } from 'src/addresses/addresses.service';
 import { CommonService } from 'src/common/services/common.service';
 import { CreateCustomerDto } from '../dto/create-customer.dto';
+import { customerPaginatedDto } from '../dto/customer-paginated-dto';
+import { CustomerDto } from '../dto/CustomerDto';
 import { UpdateCustomerDto } from '../dto/update-customer.dto';
 
 @Injectable()
@@ -27,7 +30,10 @@ export class CustomersService {
     userNew.accountTypeId = accountType;
     userNew.firstName = createCustomerDto.firstName;
     userNew.lastName = createCustomerDto.lastName;
+    userNew.middleName = createCustomerDto.middleName;
     userNew.userName = createCustomerDto.userName;
+    userNew.telephone = createCustomerDto.telephone;
+    userNew.companyName = createCustomerDto.companyName;
     userNew.email = createCustomerDto.email;
 
     let userEntity = await this.accountService.create(userNew);
@@ -46,7 +52,41 @@ export class CustomersService {
 
   async findAll(offset: number, take: number) {
     let typeEntity = await this.accountTypeService.findOneByUserType('Client');
-    let users = await this.accountService.findAll(offset, take, typeEntity);
-    return users;
+    //let users = await this.accountService.findAll(offset, take, typeEntity);
+    let users = await this.accountService.getAll(typeEntity);
+    let accountPaginated = this.paginateAccount(users,offset,take);
+
+    let customersPaged = new customerPaginatedDto();
+
+    customersPaged.CustomerCant = users.length;
+    customersPaged.customers = accountPaginated;
+
+    return customersPaged;
+  }
+
+  async findOne(id:number){    
+    return this.accountService.findOne(id);    
+  }
+
+  paginateAccount(accountList:Account[], size:number, page:number)
+  {
+    return accountList.slice(size).slice(0,page);
+  }
+  
+  toCustomer(account: Account)
+  {
+    let customer = new CustomerDto();
+    customer.id = account.id;
+    customer.firstName = account.firstName;
+    customer.firstName = account.lastName;
+    customer.userName = account.userName;  
+    
+    return customer;
+  }
+  toCustomers(accountList: Account[])
+  { 
+    let customers = new CustomerDto[accountList.length];   
+    
+    return customers;
   }
 }

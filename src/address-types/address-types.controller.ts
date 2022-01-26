@@ -4,7 +4,7 @@ import { AddressTypesService } from './address-types.service';
 import { CreateAddressTypeDto } from './dto/create-address-type.dto';
 import { UpdateAddressTypeDto } from './dto/update-address-type.dto';
 
-@ApiTags('customers')
+@ApiTags('address-types')
 @Controller('address-types')
 export class AddressTypesController {
   constructor(private readonly addressTypesService: AddressTypesService) {}

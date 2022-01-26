@@ -36,9 +36,20 @@ export class AccountsService {
       take: limitTake,
     });
   }
+  async getAll(
+    accountType: AccountsType,
+  ) {
+    return await this.usersRepository.find({ relations:["addresses"],
+      where: { accountType: accountType },
+      order: {
+        id: 'DESC',
+      }
+    });
+  }
 
   async findOne(id: number) {
-    return await this.usersRepository.findOne(id);
+    return await this.usersRepository.findOne({relations:["addresses"],
+  where:{id:id}});
   }
 
   async findByEmail(email: string) {

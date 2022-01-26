@@ -11,6 +11,7 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 
 @Entity()
@@ -24,8 +25,11 @@ export class Account {
   @Column({ length: 45, nullable: false })
   lastName: string;
 
+  @Column({ length: 45, nullable: true })
+  middleName: string;
+
   @Index()
-  @Column({ length: 45, nullable: false })
+  @Column({ length: 45,nullable: false })
   userName: string;
 
   @Index()
@@ -33,11 +37,18 @@ export class Account {
   @Column({ length: 45, unique: true, nullable: false })
   email: string;
 
+  @Column({ length: 45, nullable: true })
+  telephone: string;
+
+  @Column({ length: 45, nullable: true })
+  companyName: string;
+
   @ManyToOne(() => AccountsType, (accountType) => accountType.id)
   accountType: AccountsType;
 
-  @OneToMany(()=>Address,(address)=>address.account)  
-  address: Address[];
+  @OneToMany(type => Address,address=>address.account)
+  @JoinColumn()  
+  addresses: Address[];
 
   @CreateDateColumn()
   created!: Date;

@@ -15,13 +15,9 @@ export class AddressesService {
   ) {}
   
   async create(createAddressDto: CreateAddressDto) {
-    let createAddressEntity = new Address();
+    let createAddressEntity = new Address();    
 
-    let addressType = new AddressType();
-
-    addressType.id = createAddressDto.addressType;
-        
-    createAddressEntity.addressType = createAddressDto.addressType;;
+    createAddressEntity.addressType = createAddressDto.addressType;
     createAddressEntity.country = createAddressDto.country;
     createAddressEntity.zipCode = createAddressDto.zipCode;
     createAddressEntity.state = createAddressDto.state;
@@ -37,13 +33,12 @@ export class AddressesService {
   async insert(id: number,createAddressDto: CreateAddressDto) {
     let createAddressEntity = new Address();
 
-    let addressType = new AddressType();
     let account = new Account();
     account.id = id;
 
-    addressType.id = createAddressDto.addressType;
-    createAddressEntity.account=account;    
-    createAddressEntity.addressType = createAddressDto.addressType;;
+    createAddressEntity.account=account; 
+
+    createAddressEntity.addressType = createAddressDto.addressType;
     createAddressEntity.country = createAddressDto.country;
     createAddressEntity.zipCode = createAddressDto.zipCode;
     createAddressEntity.state = createAddressDto.state;
@@ -74,13 +69,9 @@ export class AddressesService {
   async update(id: number, updateAddressDto: UpdateAddressDto) {
 
     let updateAdressEntity = new Address();
-
-
-    let addressType = new AddressType();
-
-    addressType.id = updateAddressDto.addressType;
     
-    updateAdressEntity.addressType=updateAddressDto.addressType;;
+    
+    updateAdressEntity.addressType=updateAddressDto.addressType;
     updateAdressEntity.country = updateAddressDto.country;
     updateAdressEntity.zipCode = updateAddressDto.zipCode;
     updateAdressEntity.state = updateAddressDto.state;
@@ -92,6 +83,17 @@ export class AddressesService {
     updateAdressEntity.contactName = updateAddressDto.contactName;
 
     return await this.addressRepository.update(id,updateAdressEntity);
+  }
+
+   findByAccount(accountId: number){
+    let account = new Account();
+    account.id = accountId
+    return this.addressRepository.find({
+      where: {account:account},
+      order: {
+        id: 'DESC',
+      }
+    })
   }
 
   async remove(id: number) {

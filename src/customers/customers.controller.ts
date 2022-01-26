@@ -6,6 +6,8 @@ import { UpdateCustomerDto } from './dto/update-customer.dto';
 import { AccountDto } from 'src/accounts/dto/account.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CustomerDto } from './dto/CustomerDto';
+import { customerPaginatedDto } from './dto/customer-paginated-dto';
+import { get } from 'http';
 
 @ApiTags('customers')
 @Controller('customers')
@@ -28,7 +30,7 @@ export class CustomersController {
 
   @ApiResponse({
     status: 200,
-    type: [CustomerDto],
+    type: customerPaginatedDto,
     description: 'procesado correctamente',
   })
   @ApiBearerAuth()
@@ -39,5 +41,13 @@ export class CustomersController {
     let take = limit;
     let skip = (page - 1) * limit;
     return this.customersService.findAll(skip, take);
+  }
+  
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
+  @Get(':id')
+  findOne(@Param('id') id: string){
+    return this.customersService.findOne(+id);
   }
 }

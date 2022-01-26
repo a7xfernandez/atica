@@ -18,6 +18,12 @@ export class CreateCustomerDto {
   email: string;
 
   @ApiProperty()
+  telephone: string;
+
+  @ApiProperty()
+  companyName: string;
+
+  @ApiProperty()
   password: string;
   
   @ApiProperty({type:[CreateAddressDto]})

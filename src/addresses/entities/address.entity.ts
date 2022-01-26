@@ -36,7 +36,7 @@ export class Address {
     zipCode: string;    
 
     @Column()
-    country: string;
+    country: string;    
 
     @Column()
     addressType: number;

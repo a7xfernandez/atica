@@ -23,6 +23,12 @@ export class CustomerDto{
 
   @ApiProperty()
   password: string;
+
+  @ApiProperty()
+  telephone: string;
+
+  @ApiProperty()
+  companyName: string;
   
   @ApiProperty({type:[CreateAddressDto]})
   Addresses: CreateAddressDto[];

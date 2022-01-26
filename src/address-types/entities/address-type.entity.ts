@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, Index, DeleteDateColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Index, DeleteDateColumn, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class AddressType {
@@ -11,7 +11,7 @@ export class AddressType {
   description: string;
 
   @Column({ default: true })
-  isActive: string;
+  isActive: string;  
 
   @CreateDateColumn()
   created!: Date;
