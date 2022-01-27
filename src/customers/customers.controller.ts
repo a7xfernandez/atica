@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Res, UseGuards, Put } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { CustomersService } from './services/customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
@@ -8,6 +8,7 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CustomerDto } from './dto/CustomerDto';
 import { customerPaginatedDto } from './dto/customer-paginated-dto';
 import { get } from 'http';
+import { AcctionResponseDto } from 'src/common/dto/acction-response.dto';
 
 @ApiTags('customers')
 @Controller('customers')
@@ -42,12 +43,32 @@ export class CustomersController {
     let skip = (page - 1) * limit;
     return this.customersService.findAll(skip, take);
   }
-  
+
   @ApiBearerAuth()
   @ApiUnauthorizedResponse()
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   findOne(@Param('id') id: string){
     return this.customersService.findOne(+id);
+  }
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
+  @Put(':customerId')
+  update(@Param('customerId') customerId: number, @Body() updateCustomerDto: UpdateCustomerDto){
+    return this.customersService.update(+customerId,updateCustomerDto);
+  }
+
+  @ApiResponse({
+    status: 200,
+    type: AcctionResponseDto,
+    description: 'procesado correctamente',
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
+  @Delete(':customerId')
+  remove(@Param('customerId') customerId: number){
+    return this.customersService.remove(customerId);
   }
 }

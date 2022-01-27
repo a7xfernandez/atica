@@ -3,6 +3,7 @@ import { AccountsCredential } from 'src/accounts-credentials/entities/accounts-c
 import { AccountsCredentialsService } from 'src/accounts-credentials/services/accounts-credentials.service';
 import { AccountsTypesService } from 'src/accounts-types/services/accounts-types.service';
 import { CreateAccountDto } from 'src/accounts/dto/create-account.dto';
+import { UpdateAccountDto } from 'src/accounts/dto/update-account.dto';
 import { Account } from 'src/accounts/entities/account.entity';
 import { AccountsService } from 'src/accounts/services/accounts.service';
 import { AddressesService } from 'src/addresses/addresses.service';
@@ -45,7 +46,35 @@ export class CustomersService {
 
     let credentials = await this.credentialService.create(credential);
 
-    let address = await this.addressService.insertList(userEntity.id,createCustomerDto.Addresses);
+    let address = await this.addressService.insertList(userEntity.id,createCustomerDto.addresses);
+
+    return userEntity;
+  }
+  async update(id: number, createCustomerDto: UpdateCustomerDto) {
+
+    let accountType = await this.accountTypeService.findOneByUserType('Client');
+    let userNew = new UpdateAccountDto();
+
+    userNew.accountTypeId = accountType;
+    userNew.firstName = createCustomerDto.firstName;
+    userNew.lastName = createCustomerDto.lastName;
+    userNew.middleName = createCustomerDto.middleName;
+    userNew.userName = createCustomerDto.userName;
+    userNew.telephone = createCustomerDto.telephone;
+    userNew.companyName = createCustomerDto.companyName;
+    userNew.email = createCustomerDto.email;
+
+    let updateResult = await this.accountService.update(id,userNew);
+    let userEntity = await this.accountService.findOne(id);
+    let credential = new AccountsCredential();
+
+    credential.account = userEntity;
+    credential.credential = createCustomerDto.password;
+    credential.isActive = true;
+
+    let credentials = await this.credentialService.update(id,credential);
+
+    let address = await this.addressService.updateList(createCustomerDto.addresses);
 
     return userEntity;
   }
@@ -66,6 +95,10 @@ export class CustomersService {
 
   async findOne(id:number){    
     return this.accountService.findOne(id);    
+  }
+
+  async remove(id: number){
+    return await this.accountService.remove(id);
   }
 
   paginateAccount(accountList:Account[], size:number, page:number)

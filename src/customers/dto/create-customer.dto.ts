@@ -27,5 +27,5 @@ export class CreateCustomerDto {
   password: string;
   
   @ApiProperty({type:[CreateAddressDto]})
-  Addresses: CreateAddressDto[];
+  addresses: CreateAddressDto[];
 }

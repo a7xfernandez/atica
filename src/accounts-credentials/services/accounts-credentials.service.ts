@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UpdateAccountDto } from 'src/accounts/dto/update-account.dto';
 import { CommonService } from 'src/common/services/common.service';
 import { Repository } from 'typeorm';
 import { CreateAccountsCredentialDto } from '../dto/create-accounts-credential.dto';
@@ -40,5 +41,9 @@ export class AccountsCredentialsService {
   async remove(id: number) {
     let credential = await this.findOne(id);
     return this.credentialRepository.softDelete(id);
+  }
+  async update(id: number,updateAccountsCredentialDto: UpdateAccountsCredentialDto)
+  {
+    return this.credentialRepository.update(id,updateAccountsCredentialDto);
   }
 }
