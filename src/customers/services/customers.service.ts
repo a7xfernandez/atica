@@ -26,7 +26,7 @@ export class CustomersService {
   async create(createCustomerDto: CreateCustomerDto) {
 
     let accountType = await this.accountTypeService.findOneByUserType('Client');
-    let userNew = new CreateAccountDto();
+    let userNew = new CreateAccountDto();   
 
     userNew.accountTypeId = accountType;
     userNew.firstName = createCustomerDto.firstName;
@@ -37,12 +37,13 @@ export class CustomersService {
     userNew.companyName = createCustomerDto.companyName;
     userNew.email = createCustomerDto.email;
 
+    
     let userEntity = await this.accountService.create(userNew);
     let credential = new AccountsCredential();
 
     credential.account = userEntity;
     credential.credential = createCustomerDto.password;
-    credential.isActive = true;
+    credential.isActive = true;    
 
     let credentials = await this.credentialService.create(credential);
 
@@ -53,9 +54,9 @@ export class CustomersService {
   async update(id: number, createCustomerDto: UpdateCustomerDto) {
 
     let accountType = await this.accountTypeService.findOneByUserType('Client');
-    let userNew = new UpdateAccountDto();
+    let userNew = new Account();
 
-    userNew.accountTypeId = accountType;
+    userNew.accountType = accountType;
     userNew.firstName = createCustomerDto.firstName;
     userNew.lastName = createCustomerDto.lastName;
     userNew.middleName = createCustomerDto.middleName;
@@ -63,8 +64,10 @@ export class CustomersService {
     userNew.telephone = createCustomerDto.telephone;
     userNew.companyName = createCustomerDto.companyName;
     userNew.email = createCustomerDto.email;
+    console.log(userNew);
 
     let updateResult = await this.accountService.update(id,userNew);
+    console.log(updateResult);
     let userEntity = await this.accountService.findOne(id);
     let credential = new AccountsCredential();
 
@@ -74,7 +77,11 @@ export class CustomersService {
 
     let credentials = await this.credentialService.update(id,credential);
 
-    let address = await this.addressService.updateList(createCustomerDto.addresses);
+    console.log(createCustomerDto.addresses);
+    if (createCustomerDto.addresses!=null) {
+      let address = await this.addressService.updateList(createCustomerDto.addresses);      
+    }
+    
 
     return userEntity;
   }

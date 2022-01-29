@@ -56,11 +56,9 @@ export class AddressesService {
   async updateOne(id: number,createAddressDto: UpdateAddressDto) {
     let createAddressEntity = new Address();
 
-    let account = new Account();
-    account.id = id;
+    //let account = await this.accountService.findOne(id);    
 
-    createAddressEntity.account=account; 
-
+    //createAddressEntity.account=account;
     createAddressEntity.addressType = createAddressDto.addressType;
     createAddressEntity.country = createAddressDto.country;
     createAddressEntity.zipCode = createAddressDto.zipCode;
@@ -124,11 +122,12 @@ export class AddressesService {
 
   async insertList(id: number,createAddressesDto: CreateAddressDto[])
   {
+    console.log(createAddressesDto);
+    console.log(id);
     return createAddressesDto.forEach(element=>this.insert(id,element))
   }
   async updateList(updateAddressDto: UpdateAddressDto[])
   {
-    return updateAddressDto.forEach(element => this.updateOne(element.id,element));
-    
+    return updateAddressDto.forEach(element => this.updateOne(element.id,element))    
   }
 }

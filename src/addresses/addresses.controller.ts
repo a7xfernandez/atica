@@ -51,7 +51,7 @@ export class AddressesController {
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAddressDto: UpdateAddressDto) {
-    return this.addressesService.update(+id, updateAddressDto);
+    return this.addressesService.updateOne(+id, updateAddressDto);
   }
   
 
