@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { AccountsCredential } from 'src/accounts-credentials/entities/accounts-credential.entity';
 import { AccountsCredentialsService } from 'src/accounts-credentials/services/accounts-credentials.service';
 import { AccountsTypesService } from 'src/accounts-types/services/accounts-types.service';
@@ -52,7 +52,6 @@ export class CustomersService {
     return userEntity;
   }
   async update(id: number, createCustomerDto: UpdateCustomerDto) {
-
     let accountType = await this.accountTypeService.findOneByUserType('Client');
     let userNew = new Account();
 
@@ -63,11 +62,10 @@ export class CustomersService {
     userNew.userName = createCustomerDto.userName;
     userNew.telephone = createCustomerDto.telephone;
     userNew.companyName = createCustomerDto.companyName;
-    userNew.email = createCustomerDto.email;
-    console.log(userNew);
+    userNew.email = createCustomerDto.email;    
 
     let updateResult = await this.accountService.update(id,userNew);
-    console.log(updateResult);
+    
     let userEntity = await this.accountService.findOne(id);
     let credential = new AccountsCredential();
 
@@ -77,8 +75,8 @@ export class CustomersService {
 
     let credentials = await this.credentialService.update(id,credential);
 
-    console.log(createCustomerDto.addresses);
-    if (createCustomerDto.addresses!=null) {
+    
+    if (createCustomerDto.addresses!=null && createCustomerDto.addresses != undefined) {
       let address = await this.addressService.updateList(createCustomerDto.addresses);      
     }
     
@@ -129,4 +127,5 @@ export class CustomersService {
     
     return customers;
   }
+
 }
