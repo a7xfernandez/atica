@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { ShipmentAddressesService } from './shipment-addresses.service';
 import { CreateShipmentAddressDto } from './dto/create-shipment-address.dto';
 import { UpdateShipmentAddressDto } from './dto/update-shipment-address.dto';
@@ -32,6 +32,10 @@ export class ShipmentAddressesController {
     return this.shipmentAddressesService.update(+id, updateShipmentAddressDto);
   }
 
+  @Put(':id')
+  updateEntity(@Param('id') id: string, @Body() updateShipmentAddressDto: UpdateShipmentAddressDto) {
+    return this.shipmentAddressesService.update(+id, updateShipmentAddressDto);
+  }
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.shipmentAddressesService.remove(+id);
