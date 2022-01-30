@@ -32,10 +32,10 @@ export class ShipmentAddressesController {
     return this.shipmentAddressesService.update(+id, updateShipmentAddressDto);
   }
 
-  @Put(':id')
-  updateEntity(@Param('id') id: string, @Body() updateShipmentAddressDto: UpdateShipmentAddressDto) {
-    return this.shipmentAddressesService.update(+id, updateShipmentAddressDto);
-  }
+  // @Put(':id')
+  // updateEntity(@Param('id') id: string, @Body() updateShipmentAddressDto: UpdateShipmentAddressDto) {
+  //   return this.shipmentAddressesService.update(+id, updateShipmentAddressDto);
+  // }
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.shipmentAddressesService.remove(+id);
