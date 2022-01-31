@@ -23,4 +23,14 @@ export class CommonService {
       },HttpStatus.ACCEPTED)         
     }
   }
+  raiseErrorUniqueUserName(raiseError: boolean)
+  {
+    if(raiseError)
+    {      
+      throw new HttpException({
+        status:HttpStatus.ACCEPTED,
+        error:'userName must be unique',
+      },HttpStatus.ACCEPTED)         
+    }
+  }
 }

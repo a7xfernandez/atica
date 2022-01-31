@@ -17,6 +17,7 @@ export class AccountsService {
 
   async create(createAccountDto: CreateAccountDto) {
     this.commonService.raiseErrorUniqueEmail(await this.isNotNewEmail(createAccountDto.email));
+    this.commonService.raiseErrorUniqueUserName(await this.isNotNewUserName(createAccountDto.userName));
     let user = await this.usersRepository.create(createAccountDto);
     user.accountType = createAccountDto.accountTypeId;    
     await this.usersRepository.save(user);
@@ -68,6 +69,7 @@ export class AccountsService {
 
   async update(id: number, updateAccountDto: UpdateAccountDto) {
     this.commonService.raiseErrorUniqueEmail(await this.isNotAUpdatebleMail(id,updateAccountDto.email));
+    this.commonService.raiseErrorUniqueUserName(await this.isNotAUpdatebleUserName(id,updateAccountDto.userName));
     return await this.usersRepository.update(id, updateAccountDto);
   }
 
@@ -83,8 +85,28 @@ export class AccountsService {
     return true;
   }
 
+  async isNotNewUserName(username: string)
+  {
+    let account = await this.findByuserName(username);     
+    
+    if(account==null && account== undefined)return false;
+    
+    return true;
+  }
+
   async isNotAUpdatebleMail(accountId: number, email: string) {
     let account = await this.findByEmail(email);    
+    if(account!=null && account!= undefined)
+    {
+      if(accountId==account.id) return false;
+
+      return true;
+    }
+    return false;
+  }
+
+  async isNotAUpdatebleUserName(accountId: number, userName: string) {
+    let account = await this.findByuserName(userName);    
     if(account!=null && account!= undefined)
     {
       if(accountId==account.id) return false;
