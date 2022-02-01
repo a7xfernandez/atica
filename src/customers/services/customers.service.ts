@@ -140,7 +140,7 @@ export class CustomersService {
 
       credential.credential = await this.commonService.hashPassword(newPassword);
   
-      await this.credentialService.update(credential.id,credential;
+      await this.credentialService.update(credential.id,credential);
     }
     else{
       throw new HttpException({
