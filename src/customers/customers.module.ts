@@ -8,6 +8,7 @@ import { AccountsProfilesModule } from 'src/accounts-profiles/accounts-profiles.
 import { AccountsTypesModule } from 'src/accounts-types/accounts-types.module';
 import { CommonModule } from 'src/common/common.module';
 import { AddressesModule } from 'src/addresses/addresses.module';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { AddressesModule } from 'src/addresses/addresses.module';
     AccountsProfilesModule,
     AccountsTypesModule,    
     CommonModule,
-    AddressesModule,    
+    AddressesModule,
+    AuthModule    
   ],
   exports: [CustomersService],
   controllers: [CustomersController],

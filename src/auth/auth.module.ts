@@ -27,6 +27,7 @@ import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
       },
     }),
   ],
+  exports:[AuthService],
   providers: [AuthService, LocalStrategy, JwtStrategy, ApiKeyStrategy],
   controllers: [AuthController],
 })

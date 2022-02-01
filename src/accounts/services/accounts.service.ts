@@ -57,9 +57,10 @@ export class AccountsService {
 
   async findByEmail(email: string) {
     return await this.usersRepository.findOne({
-      where: { email: email, },      
+      where: { email: email },      
     });
   }
+
 
   async findByuserName(userName: string) {
     return await this.usersRepository.findOne({
@@ -79,15 +80,16 @@ export class AccountsService {
 
   async isNotNewEmail(email:string)
   {
-    let account = await this.findByEmail(email);    
-    if(account==null && account== undefined)return false;
+    let account = await this.findByEmail(email);
+    
+    if(account==null && account== undefined) return false;    
     
     return true;
   }
 
   async isNotNewUserName(username: string)
   {
-    let account = await this.findByuserName(username);     
+    let account = await this.findByuserName(username);
     
     if(account==null && account== undefined)return false;
     
@@ -95,7 +97,7 @@ export class AccountsService {
   }
 
   async isNotAUpdatebleMail(accountId: number, email: string) {
-    let account = await this.findByEmail(email);    
+    let account = await this.findByEmail(email);
     if(account!=null && account!= undefined)
     {
       if(accountId==account.id) return false;
@@ -106,7 +108,7 @@ export class AccountsService {
   }
 
   async isNotAUpdatebleUserName(accountId: number, userName: string) {
-    let account = await this.findByuserName(userName);    
+    let account = await this.findByuserName(userName);
     if(account!=null && account!= undefined)
     {
       if(accountId==account.id) return false;

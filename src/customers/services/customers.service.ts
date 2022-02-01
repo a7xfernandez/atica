@@ -7,6 +7,7 @@ import { UpdateAccountDto } from 'src/accounts/dto/update-account.dto';
 import { Account } from 'src/accounts/entities/account.entity';
 import { AccountsService } from 'src/accounts/services/accounts.service';
 import { AddressesService } from 'src/addresses/addresses.service';
+import { AuthService } from 'src/auth/services/auth.service';
 import { CommonService } from 'src/common/services/common.service';
 import { CreateCustomerDto } from '../dto/create-customer.dto';
 import { customerPaginatedDto } from '../dto/customer-paginated-dto';
@@ -20,6 +21,7 @@ export class CustomersService {
     private credentialService: AccountsCredentialsService,
     private accountTypeService: AccountsTypesService,
     private addressService: AddressesService,
+    private autService: AuthService,
     private commonService: CommonService,
   ) {}
 
@@ -126,6 +128,26 @@ export class CustomersService {
     let customers = new CustomerDto[accountList.length];   
     
     return customers;
+  }
+
+  async updatePassWord(username: string, oldPassWord: string, newPassword: string)
+  {
+    const user =await this.autService.validate(username,oldPassWord);
+    
+    if(user!=null && user != undefined)
+    {
+      let credential = await this.credentialService.findByAccount(user);
+
+      credential.credential = await this.commonService.hashPassword(newPassword);
+  
+      await this.credentialService.update(credential.id,credential;
+    }
+    else{
+      throw new HttpException({
+        status:HttpStatus.ACCEPTED,
+        error:'Old Password does not match'        
+      }, HttpStatus.ACCEPTED)
+    }    
   }
 
 }

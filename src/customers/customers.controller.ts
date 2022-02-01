@@ -9,6 +9,7 @@ import { CustomerDto } from './dto/CustomerDto';
 import { customerPaginatedDto } from './dto/customer-paginated-dto';
 import { get } from 'http';
 import { AcctionResponseDto } from 'src/common/dto/acction-response.dto';
+import { UpdatePasswordDto } from 'src/auth/dto/update-password.dto';
 
 @ApiTags('customers')
 @Controller('customers')
@@ -70,5 +71,19 @@ export class CustomersController {
   @Delete(':customerId')
   remove(@Param('customerId') customerId: number){
     return this.customersService.remove(customerId);
+  }
+
+  @ApiResponse({
+    status: 200,
+    type: AcctionResponseDto,
+    description: 'procesado correctamente',
+  })
+  @ApiBearerAuth()
+  @ApiUnauthorizedResponse()
+  @UseGuards(JwtAuthGuard)
+  @Patch('/updatePassword')
+  updatePassword(@Body() updatePasswordDto: UpdatePasswordDto)
+  {
+    return this.customersService.updatePassWord(updatePasswordDto.username,updatePasswordDto.oldPassword,updatePasswordDto.newPassword);
   }
 }
