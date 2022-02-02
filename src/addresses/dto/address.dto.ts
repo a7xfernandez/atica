@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { addressTypeDto } from "src/address-types/dto/address-type.dto";
+import { AddressTypeDto } from "src/address-types/dto/address-type.dto";
 
 export class addressDto {
     @ApiProperty()
@@ -33,7 +33,7 @@ export class addressDto {
     country: string;
 
     @ApiProperty()
-    addressType: addressTypeDto;
+    addressType: AddressTypeDto;
     
     created!: Date; 
     

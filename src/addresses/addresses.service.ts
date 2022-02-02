@@ -17,9 +17,13 @@ export class AddressesService {
   ) {}
   
   async create(createAddressDto: CreateAddressDto) {
-    let createAddressEntity = new Address();    
+    let createAddressEntity = new Address();
 
-    createAddressEntity.addressType = createAddressDto.addressType;
+    let addressType = new AddressType();
+
+    addressType.id = createAddressDto.addressType.id;
+
+    createAddressEntity.addressType = addressType;
     createAddressEntity.country = createAddressDto.country;
     createAddressEntity.zipCode = createAddressDto.zipCode;
     createAddressEntity.state = createAddressDto.state;
@@ -38,9 +42,13 @@ export class AddressesService {
     let account = new Account();
     account.id = id;
 
+    let addressType = new AddressType();
+
+    addressType.id = createAddressDto.addressType.id;
+
     createAddressEntity.account=account; 
 
-    createAddressEntity.addressType = createAddressDto.addressType;
+    createAddressEntity.addressType = addressType;
     createAddressEntity.country = createAddressDto.country;
     createAddressEntity.zipCode = createAddressDto.zipCode;
     createAddressEntity.state = createAddressDto.state;
@@ -56,10 +64,12 @@ export class AddressesService {
   async updateOne(id: number,createAddressDto: UpdateAddressDto) {
     let createAddressEntity = new Address();
 
-    //let account = await this.accountService.findOne(id);    
 
-    //createAddressEntity.account=account;
-    createAddressEntity.addressType = createAddressDto.addressType;
+    let addressType = new AddressType();
+
+    addressType.id = createAddressDto.addressType.id;
+
+    createAddressEntity.addressType = addressType;
     createAddressEntity.country = createAddressDto.country;
     createAddressEntity.zipCode = createAddressDto.zipCode;
     createAddressEntity.state = createAddressDto.state;
@@ -91,8 +101,11 @@ export class AddressesService {
 
     let updateAdressEntity = new Address();
     
+    let addressType = new AddressType();
+
+    addressType.id = updateAddressDto.addressType.id;
     
-    updateAdressEntity.addressType=updateAddressDto.addressType;
+    updateAdressEntity.addressType=addressType;
     updateAdressEntity.country = updateAddressDto.country;
     updateAdressEntity.zipCode = updateAddressDto.zipCode;
     updateAdressEntity.state = updateAddressDto.state;
