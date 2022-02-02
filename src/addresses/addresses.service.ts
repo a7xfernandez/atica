@@ -64,7 +64,6 @@ export class AddressesService {
   async updateOne(id: number,createAddressDto: UpdateAddressDto) {
     let createAddressEntity = new Address();
 
-
     let addressType = new AddressType();
 
     addressType.id = createAddressDto.addressType.id;
