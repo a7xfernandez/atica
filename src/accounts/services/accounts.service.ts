@@ -42,7 +42,7 @@ export class AccountsService {
   async getAll(
     accountType: AccountsType,
   ) {
-    return await this.usersRepository.find({ relations:["addresses"],
+    return await this.usersRepository.find({ relations:["addresses","addresses.addressType"],
       where: { accountType: accountType },
       order: {
         id: 'DESC',
@@ -51,7 +51,7 @@ export class AccountsService {
   }
 
   async findOne(id: number) {
-    return await this.usersRepository.findOne({relations:["addresses"],
+    return await this.usersRepository.findOne({relations:["addresses","addresses.addressType"],
   where:{id:id}});
   }
 

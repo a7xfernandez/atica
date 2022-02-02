@@ -33,7 +33,7 @@ export class addressDto {
     country: string;
 
     @ApiProperty()
-    addressType: number;
+    addressType: addressTypeDto;
     
     created!: Date; 
     

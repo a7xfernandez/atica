@@ -31,5 +31,5 @@ export class CreateAddressDto {
     country: string;
 
     @ApiProperty()
-    addressType: number;
+    addressType: addressTypeDto;
 }

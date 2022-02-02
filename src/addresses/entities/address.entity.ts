@@ -1,3 +1,4 @@
+import { type } from 'os';
 import { Account } from 'src/accounts/entities/account.entity';
 import { AddressType } from 'src/address-types/entities/address-type.entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, JoinColumn, OneToOne } from 'typeorm';
@@ -38,8 +39,8 @@ export class Address {
     @Column()
     country: string;    
 
-    @Column()
-    addressType: number;
+    @ManyToOne(type => AddressType,(addressType) => addressType.id)
+    addressType: AddressType;
 
 
     @CreateDateColumn()
