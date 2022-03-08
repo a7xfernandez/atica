@@ -83,7 +83,7 @@ export class AddressesService {
   }
 
   async findAll(limitSkip: number, limitTake: number) {
-    return await this.addressRepository.find({
+    return await this.addressRepository.find({relations:["addressType"],
       order: {
         id: 'DESC',
       },
@@ -120,7 +120,7 @@ export class AddressesService {
 
    async findByAccount(accountId: number){
     let account = await this.accountService.findOne(accountId);     
-    return this.addressRepository.find({
+    return this.addressRepository.find({relations:["addressType"],
       where: {account: account},
       order: {
         id: 'DESC',

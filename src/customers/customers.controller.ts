@@ -74,7 +74,7 @@ export class CustomersController {
   }
 
   @ApiResponse({
-    status: 200,
+    status: 204,
     type: AcctionResponseDto,
     description: 'procesado correctamente',
   })
