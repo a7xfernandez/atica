@@ -78,6 +78,8 @@ export class AddressesService {
     createAddressEntity.phoneNumber2 = createAddressDto.phoneNumber2;
     createAddressEntity.phoneNumber1 = createAddressDto.phoneNumber1;
     createAddressEntity.contactName = createAddressDto.contactName;
+    
+    console.log(createAddressEntity);
 
     return await this.addressRepository.update(id,createAddressEntity);
   }
