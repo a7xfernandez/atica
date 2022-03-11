@@ -16,6 +16,10 @@ import { LogisticOperatorsModule } from './logistic-operators/logistic-operators
 import { ShipmentAddressesModule } from './shipment-addresses/shipment-addresses.module';
 import { AddressTypesModule } from './address-types/address-types.module';
 import { AddressesModule } from './addresses/addresses.module';
+import { CountriesModule } from './countries/countries.module';
+import { ShippingTypesModule } from './shipping-types/shipping-types.module';
+import { ServiceTypesModule } from './service-types/service-types.module';
+import { PackageTypesModule } from './package-types/package-types.module';
 
 
 @Module({
@@ -48,7 +52,11 @@ import { AddressesModule } from './addresses/addresses.module';
     LogisticOperatorsModule,
     ShipmentAddressesModule,
     AddressTypesModule,
-    AddressesModule,    
+    AddressesModule,
+    CountriesModule,
+    ShippingTypesModule,
+    ServiceTypesModule,
+    PackageTypesModule,    
   ],
   exports: [],
   controllers: [],
