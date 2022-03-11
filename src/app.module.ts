@@ -20,6 +20,7 @@ import { CountriesModule } from './countries/countries.module';
 import { ShippingTypesModule } from './shipping-types/shipping-types.module';
 import { ServiceTypesModule } from './service-types/service-types.module';
 import { PackageTypesModule } from './package-types/package-types.module';
+import { CompaniesModule } from './companies/companies.module';
 
 
 @Module({
@@ -56,7 +57,8 @@ import { PackageTypesModule } from './package-types/package-types.module';
     CountriesModule,
     ShippingTypesModule,
     ServiceTypesModule,
-    PackageTypesModule,    
+    PackageTypesModule,
+    CompaniesModule,    
   ],
   exports: [],
   controllers: [],
