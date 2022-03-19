@@ -2,7 +2,7 @@ import { Account } from './../entities/account.entity';
 import { Injectable } from '@nestjs/common';
 import { CreateAccountDto } from '../dto/create-account.dto';
 import { UpdateAccountDto } from '../dto/update-account.dto';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AccountsType } from 'src/accounts-types/entities/accounts-type.entity';
 import { CommonService } from 'src/common/services/common.service';
@@ -44,6 +44,18 @@ export class AccountsService {
   ) {
     return await this.usersRepository.find({ relations:["addresses","addresses.addressType"],
       where: { accountType: accountType },
+      order: {
+        id: 'DESC',
+      }
+    });
+  }
+
+  async getByName(
+    accountType: AccountsType,paramLastName: string,
+  ) {
+    return await this.usersRepository.find({ relations:["addresses","addresses.addressType"],
+      where: 
+        { accountType: accountType, lastName: paramLastName },
       order: {
         id: 'DESC',
       }

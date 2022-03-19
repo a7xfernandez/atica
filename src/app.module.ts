@@ -21,6 +21,8 @@ import { ShippingTypesModule } from './shipping-types/shipping-types.module';
 import { ServiceTypesModule } from './service-types/service-types.module';
 import { PackageTypesModule } from './package-types/package-types.module';
 import { CompaniesModule } from './companies/companies.module';
+import { OrdersModule } from './orders/orders.module';
+import { OrderDetailsModule } from './order-details/order-details.module';
 
 
 @Module({
@@ -58,7 +60,9 @@ import { CompaniesModule } from './companies/companies.module';
     ShippingTypesModule,
     ServiceTypesModule,
     PackageTypesModule,
-    CompaniesModule,    
+    CompaniesModule,
+    OrdersModule,
+    OrderDetailsModule,    
   ],
   exports: [],
   controllers: [],

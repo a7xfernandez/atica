@@ -100,6 +100,23 @@ export class CustomersService {
     return customersPaged;
   }
 
+  async getByName(offset: number, take: number, paramLastName: string){
+
+    let typeEntity = await this.accountTypeService.findOneByUserType('Client');
+    //let users = await this.accountService.findAll(offset, take, typeEntity);
+    let users = await this.accountService.getByName(typeEntity,paramLastName);
+
+    //console.log(users);
+    let accountPaginated = this.paginateAccount(users,offset,take);
+
+    let customersPaged = new customerPaginatedDto();
+
+    customersPaged.CustomerCant = users.length;
+    customersPaged.customers = accountPaginated;
+
+    return customersPaged;
+  }
+
   async findOne(id:number){    
     return this.accountService.findOne(id);    
   }

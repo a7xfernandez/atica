@@ -45,6 +45,13 @@ export class CustomersController {
     return this.customersService.findAll(skip, take);
   }
 
+
+  @Get('/:page/:limit/:name')
+  getByName(@Param('limit') limit: number, @Param('page') page: number,@Param('name')name:string) {
+    let take = limit;
+    let skip = (page - 1) * limit;
+    return this.customersService.getByName(skip, take,name);
+  }
   @ApiBearerAuth()
   @ApiUnauthorizedResponse()
   @UseGuards(JwtAuthGuard)
