@@ -57,6 +57,7 @@ export class AccountsService {
       where: [
         { accountType: accountType, lastName: Like(`%${paramLastName}%`) },
         { accountType: accountType, firstName: Like(`%${paramLastName}%`) },
+        { accountType: accountType, middleName: Like(`%${paramLastName}%`) },
       ],
       order: {
         id: 'DESC',
