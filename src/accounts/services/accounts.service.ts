@@ -54,8 +54,10 @@ export class AccountsService {
     accountType: AccountsType,paramLastName: string,
   ) {
     return await this.usersRepository.find({ relations:["addresses","addresses.addressType"],
-      where: 
-        { accountType: accountType, lastName: paramLastName },
+      where: [
+        { accountType: accountType, lastName: Like(`%${paramLastName}%`) },
+        { accountType: accountType, firstName: Like(`%${paramLastName}%`) },
+      ],
       order: {
         id: 'DESC',
       }
