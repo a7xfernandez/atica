@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { TrackingsService } from './trackings.service';
 import { CreateTrackingDto } from './dto/create-tracking.dto';
 import { UpdateTrackingDto } from './dto/update-tracking.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('trackings')
+@ApiTags('trackings')
 export class TrackingsController {
   constructor(private readonly trackingsService: TrackingsService) {}
 

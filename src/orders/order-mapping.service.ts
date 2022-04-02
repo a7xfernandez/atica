@@ -3,6 +3,7 @@ import { Account } from "src/accounts/entities/account.entity";
 import { Address } from "src/addresses/entities/address.entity";
 import { MappingRegistryService } from "src/common/services/mapping-registry.service";
 import { MappingService } from "src/common/services/mapping.service";
+import { Embarcation } from "src/embarcations/entities/embarcation.entity";
 import { LogisticOperator } from "src/logistic-operators/entities/logistic-operator.entity";
 import { CreateOrderDetailDto } from "src/order-details/dto/create-order-detail.dto";
 import { OrderDetail } from "src/order-details/entities/order-detail.entity";
@@ -26,6 +27,7 @@ export class OrderMappingService extends MappingService {
         let shippingType = new ShippingType();
         let packageType = new PackageType();
         let logisticOperator = new LogisticOperator();
+        let embarcation = new Embarcation();
         let orderDetail= new OrderDetail();
 
         orderEntity.orderDate = createOrderDto.general.orderDate;
@@ -48,6 +50,8 @@ export class OrderMappingService extends MappingService {
         orderEntity.marineInsurance = createOrderDto.shipping.marineInsurance;
         logisticOperator.id = createOrderDto.embarcation.logisticOperator;
         orderEntity.logisticOperator = logisticOperator;
+        embarcation.id = createOrderDto.embarcation.embarcation;
+        orderEntity.embarcation = embarcation;
 
         orderEntity.orderDetail = OrderDetailMappingService.toEntityOrderDetailList(createOrderDto.orderDetail);        
 

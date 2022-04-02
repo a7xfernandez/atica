@@ -24,11 +24,6 @@ export class OrdersController {
     return this.ordersService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrderDto: UpdateOrderDto) {
-    return this.ordersService.update(+id, updateOrderDto);
-  }
-
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.ordersService.remove(+id);

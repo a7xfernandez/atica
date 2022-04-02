@@ -1,5 +1,6 @@
 import { Account } from 'src/accounts/entities/account.entity';
 import { Address } from 'src/addresses/entities/address.entity';
+import { Embarcation } from 'src/embarcations/entities/embarcation.entity';
 import { LogisticOperator } from 'src/logistic-operators/entities/logistic-operator.entity';
 import { OrderDetail } from 'src/order-details/entities/order-detail.entity';
 import { PackageType } from 'src/package-types/entities/package-type.entity';
@@ -66,6 +67,9 @@ export class Order {
 
   @ManyToOne(()=>LogisticOperator, (logisticOperator)=>logisticOperator.id)
   logisticOperator!:LogisticOperator;
+
+  @ManyToOne(()=>Embarcation, (embarcation)=>embarcation.id)
+  embarcation!: Embarcation;
 
   @OneToMany(orderDetail=>OrderDetail,orderDetail=>orderDetail.id)
   @JoinColumn()
