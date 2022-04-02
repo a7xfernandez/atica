@@ -65,7 +65,7 @@ export class Order {
   marineInsurance:number;  
 
   @ManyToOne(()=>LogisticOperator, (logisticOperator)=>logisticOperator.id)
-  logisticOperator!:number;
+  logisticOperator!:LogisticOperator;
 
   @OneToMany(orderDetail=>OrderDetail,orderDetail=>orderDetail.id)
   @JoinColumn()

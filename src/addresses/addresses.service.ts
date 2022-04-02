@@ -136,8 +136,6 @@ export class AddressesService {
 
   async insertList(id: number,createAddressesDto: CreateAddressDto[])
   {
-    console.log(createAddressesDto);
-    console.log(id);
     return createAddressesDto.forEach(element=>this.insert(id,element))
   }
   async updateList(updateAddressDto: UpdateAddressDto[])

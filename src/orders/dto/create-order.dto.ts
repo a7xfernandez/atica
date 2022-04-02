@@ -19,6 +19,6 @@ export class CreateOrderDto {
     @ApiProperty({type:EmbarcationDataDto})
     embarcation:EmbarcationDataDto;    
 
-    @ApiProperty({type:CreateOrderDetailDto})
+    @ApiProperty({type:[CreateOrderDetailDto]})
     orderDetail: CreateOrderDetailDto[];
 }

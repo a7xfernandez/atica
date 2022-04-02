@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CommonService } from 'src/common/services/common.service';
+import { OrderDetailsService } from 'src/order-details/order-details.service';
 import { Repository } from 'typeorm';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './entities/order.entity';
+import { OrderMappingService } from './order-mapping.service';
 
 @Injectable()
 export class OrdersService {
@@ -11,10 +14,18 @@ export class OrdersService {
   constructor(
     @InjectRepository(Order)
     private orderRepository: Repository<Order>,
+    private orderDetailService: OrderDetailsService,
+    
   ){}
 
   async create(createOrderDto: CreateOrderDto) {
-    return await this.orderRepository.save(createOrderDto);
+    let order = OrderMappingService.toEntityOrder(createOrderDto);
+    console.log(order);
+    order.itemCant =order.orderDetail.reduce((acumulator,obj)=>{return acumulator + obj.itemsCant},0)
+    order.total =order.orderDetail.reduce((acumulator,obj)=>{return acumulator + obj.subtotal},0)
+    let newOder = await this.orderRepository.save(order);
+    let newOrderDetail = await this.orderDetailService.insertList(order.id,order.orderDetail);    
+    return order;
   }
 
   async findAll() {
@@ -32,4 +43,5 @@ export class OrdersService {
   async remove(id: number) {
     return await this.orderRepository.softDelete(id);
   }
+
 }

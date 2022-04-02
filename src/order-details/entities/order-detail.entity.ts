@@ -13,7 +13,7 @@ export class OrderDetail {
     @Column({nullable:false})
     itemsCant!: number;    
   
-    @Index({ unique: true })
+    
     @Column({ length: 45 })
     description: string;  
 
