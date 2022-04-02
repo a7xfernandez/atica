@@ -23,6 +23,7 @@ import { PackageTypesModule } from './package-types/package-types.module';
 import { CompaniesModule } from './companies/companies.module';
 import { OrdersModule } from './orders/orders.module';
 import { OrderDetailsModule } from './order-details/order-details.module';
+import { TrackingsModule } from './trackings/trackings.module';
 
 
 @Module({
@@ -62,7 +63,8 @@ import { OrderDetailsModule } from './order-details/order-details.module';
     PackageTypesModule,
     CompaniesModule,
     OrdersModule,
-    OrderDetailsModule,    
+    OrderDetailsModule,
+    TrackingsModule,    
   ],
   exports: [],
   controllers: [],
