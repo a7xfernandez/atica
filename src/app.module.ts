@@ -24,6 +24,14 @@ import { CompaniesModule } from './companies/companies.module';
 import { OrdersModule } from './orders/orders.module';
 import { OrderDetailsModule } from './order-details/order-details.module';
 import { TrackingsModule } from './trackings/trackings.module';
+import { FincasModule } from './fincas/fincas.module';
+import { ProcesosModule } from './procesos/procesos.module';
+import { LotesModule } from './lotes/lotes.module';
+import { PecerasModule } from './peceras/peceras.module';
+import { EjerciciosModule } from './ejercicios/ejercicios.module';
+import { ProyectosModule } from './proyectos/proyectos.module';
+import { MedidoresModule } from './medidores/medidores.module';
+import { TemperaturesModule } from './temperatures/temperatures.module';
 
 
 @Module({
@@ -34,13 +42,7 @@ import { TrackingsModule } from './trackings/trackings.module';
       url: process.env.DATABASE_URL,
       entities: [],
       synchronize: true,
-      autoLoadEntities: true,
-      ssl: true,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false
-        }
-      }
+      autoLoadEntities: true
     }),
     CommonModule,
     AccountsTypesModule,
@@ -64,7 +66,14 @@ import { TrackingsModule } from './trackings/trackings.module';
     CompaniesModule,
     OrdersModule,
     OrderDetailsModule,
-    TrackingsModule,    
+    TrackingsModule,
+    FincasModule,
+    ProcesosModule,
+    LotesModule,
+    PecerasModule,
+    ProyectosModule,
+    MedidoresModule,
+    TemperaturesModule,    
   ],
   exports: [],
   controllers: [],

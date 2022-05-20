@@ -10,11 +10,14 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ApiKeyStrategy } from './strategies/api-key.strategy';
 import { ConfigDefaultModule } from 'config/enviroment.properties.setting';
+import { ApiKeyAuth } from './strategies/api-key.auth';
+import { MedidoresModule } from 'src/medidores/medidores.module';
 
 @Module({
   imports: [
     ConfigDefaultModule,
     AccountsModule,
+    MedidoresModule,
     AccountsCredentialsModule,
     CommonModule,
     PassportModule,

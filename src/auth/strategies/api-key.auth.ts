@@ -4,7 +4,7 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
-export class ApiKeyStrategy extends PassportStrategy(HeaderAPIKeyStrategy) {
+export class ApiKeyAuth extends PassportStrategy(HeaderAPIKeyStrategy){
     constructor(private authService: AuthService) {
         super(
             { header: 'HTTP-X-API-KEY', prefix: '' },true,
@@ -15,8 +15,7 @@ export class ApiKeyStrategy extends PassportStrategy(HeaderAPIKeyStrategy) {
     public async validate(apiKey: string, done: (error: Error, data) => {}) {
         const check = await this.authService.authByApiKey(apiKey);
         if (!check) {
-          return done( new UnauthorizedException(), null);
-          //throw new UnauthorizedException();
+          return done( new UnauthorizedException(), null);          
         }
         return done(null, apiKey);
     }

@@ -22,7 +22,7 @@ export class AuthController {
   })
   @UseGuards(LocalAuthGuard)
   @ApiSecurity('api_key', ['api_key'])
-  @UseGuards(ApiKeyAuthGuard)
+  @UseGuards(ApiKeyAuthGuard)  
   @Post()
   async authenticate(@Req() req) {
     return this.authService.generateToken(req.user);

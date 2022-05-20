@@ -5,6 +5,7 @@ import { AccessToken } from '../dto/access-token.dto';
 import { AccountsService } from 'src/accounts/services/accounts.service';
 import { AccountsCredentialsService } from 'src/accounts-credentials/services/accounts-credentials.service';
 import { CommonService } from 'src/common/services/common.service';
+import { MedidoresService } from 'src/medidores/medidores.service';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,7 @@ export class AuthService {
     private credentialService: AccountsCredentialsService,
     private commonService: CommonService,
     private jwtService: JwtService,
+    private medidoreService: MedidoresService
   ) {}
 
   async validate(
@@ -55,5 +57,15 @@ export class AuthService {
 
   async validateApiKey(key: string): Promise<boolean> {
     return key === process.env.API_KEY;
+  }
+
+  async authByApiKey(key: string): Promise<boolean> {
+    let medidore = await this.medidoreService.findOneByApliKey(key);
+
+    console.log(medidore);
+    
+    if(medidore==null && medidore== undefined) return false;    
+    
+    return true;
   }
 }
