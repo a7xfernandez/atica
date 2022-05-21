@@ -39,7 +39,7 @@ import { TemperaturesModule } from './temperatures/temperatures.module';
     ConfigDefaultModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: process.env.DATABASE_URL,
+      url: 'postgres://postgres:pgsqlapp1@maria.c3v5o6etixdn.us-east-2.rds.amazonaws.com:5432/maria',
       entities: [],
       synchronize: true,
       autoLoadEntities: true
