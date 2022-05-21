@@ -57,7 +57,7 @@ import { TemperaturesModule } from './temperatures/temperatures.module';
     //EmbarcationsModule,
     //LogisticOperatorsModule,
     ShipmentAddressesModule,
-    //AddressTypesModule,
+    AddressTypesModule,
     AddressesModule,
     CountriesModule,
     //ShippingTypesModule,
